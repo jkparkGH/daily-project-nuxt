@@ -1,39 +1,83 @@
+const env = process.env.NODE_ENV
+const envSetting = require(`./nuxt.env.${env}.js`)
+const metaTags = require('./nuxt.meta.js')
+const plugins = require('./nuxt.plugins.js')
+const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
+const src = 'src'
+
 module.exports = {
-  /*
-  ** Headers of the page
-  */
-  head: {
-    title: 'daily-nuxt',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+  srcDir: 'src/',
+  router: {
+    base: '/',
+    linkActiveClass: 'active-link',
+    extendRoutes (routes, resolve) {
+      routes.push({
+        name: 'pageNotFound',
+        path: '*',
+        component: resolve(__dirname, src + '/pages/notfound.vue')
+      })
+    }
   },
-  /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
+  env: envSetting,
+  loading: { color: '#000' },
+  cache: true,
+  head: metaTags,
+  plugins: plugins,
+  modules: ['@nuxtjs/style-resources'],
+  styleResources: { scss: ['@assets/scss/preload.scss'] },
   build: {
-    /*
-    ** Run ESLint on save
-    */
-    extend (config, { isDev, isClient }) {
+    vendor: ['axios', '@nuxt/babel-preset-app', 'babel-polyfill'],
+    extractCss: true,
+    babel: {
+      presets ({ isServer }) {
+        return [
+          [
+            '@nuxt/babel-preset-app',
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              targets: isServer ? { node: 'current' } : { ie: 10 }
+            }
+          ]
+        ]
+      }
+    },
+    extend (config, { isDev, isClient, isServer }) {
+      config.devtool = 'hidden-source-map'
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
+        }, {
+          test: /\.js$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              plugins: [
+                '@babel/plugin-syntax-dynamic-import'
+              ]
+            }
+          },
+          exclude: /(node_modules)/
         })
       }
-    }
-  }
+      if (isServer) {
+        config.externals = [
+          nodeExternals({
+          })
+        ]
+      }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        _: 'lodash',
+        Promise: 'es6-promise'
+      })
+    ]
+  },
+  serverMiddleware: [
+    { path: '/health/check', handler: '~/serverMiddleware/healthCheck.js' }
+  ]
 }
-

@@ -5,7 +5,7 @@
   "author": "joonkyoung.park",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "set NODE_ENV=development&& nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -13,7 +13,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "@nuxtjs/style-resources": "^1.0.0",
+    "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0",
+    "es6-promise": "^4.2.8",
+    "lodash": "^4.17.19",
+    "node-sass": "^4.14.1",
+    "nuxt": "^2.0.0",
+    "sass-loader": "^9.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
