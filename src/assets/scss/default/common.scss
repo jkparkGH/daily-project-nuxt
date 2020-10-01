@@ -1,0 +1,45 @@
+.box_sh {
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  -mox-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.txt_sh {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.rd_full {
+  border-bottom-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  border-top-right-radius: 100%;
+  border-top-left-radius: 100%;
+}
+
+.img_full {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hidden_ {
+  display: none !important;
+}
+
+.blind_ {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  font-size: 0;
+  border: 0;
+  outline: 0;
+}
+
+.float_right {
+  float: right;
+}
+
+.bg_e1e1e1 {
+  background-color: #e1e1e1;
+}
