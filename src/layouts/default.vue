@@ -1,9 +1,20 @@
 <template>
   <div>
     <nuxt/>
+    <LoginSignUpModal />
   </div>
 </template>
 
-<style>
-</style>
+<script>
+import LoginSignUpModal from '@/components/common/login-signup-modal.vue'
+export default {
+  name: 'Layout-default',
+  components: {
+    LoginSignUpModal
+  }
+}
+</script>
 
+<style>
+
+</style>
