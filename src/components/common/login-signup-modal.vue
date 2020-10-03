@@ -1,6 +1,6 @@
 <template>
   <!-- Login -->
-  <div class="login-modal" v-show="true">
+  <div class="login-modal" v-show="false">
     <div class="login-modal__content">
       <div class="template-login">
         <button
