@@ -70,7 +70,6 @@ export default {
 .common-footer {
   width: 100%;
   background-color: #000;
-
   &__navigation {
     margin: 0 auto;
     width: 100%;
