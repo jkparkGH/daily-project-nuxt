@@ -1,8 +1,37 @@
-html, body {
+html,
+body {
   -webkit-text-size-adjust: none;
+  -webkit-overflow-scrolling: auto;
 }
 
-html, body, div, form, input, select, button, textarea, legend, fieldset, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, blockquote, address, p, th, td, caption {
+html,
+body,
+div,
+form,
+input,
+select,
+button,
+textarea,
+legend,
+fieldset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+li,
+dt,
+dd,
+blockquote,
+address,
+p,
+th,
+td,
+caption {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
@@ -11,34 +40,45 @@ html, body, div, form, input, select, button, textarea, legend, fieldset, h1, h2
   box-sizing: border-box;
 }
 
-ol, ul, li {
+ol,
+ul,
+li {
   list-style: none;
 }
 
-img, fieldset {
+img,
+fieldset {
   border: 0 none;
 }
 
-input[type=text], input[type=password], input[type=submit], input[type=search], textarea {
+input[type="text"],
+input[type="password"],
+input[type="submit"],
+input[type="search"],
+textarea {
   -webkit-appearance: none;
 }
 
-input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
   /* WebKit browsers */
   color: transparent;
 }
 
-input:focus:-moz-placeholder, textarea:focus:-moz-placeholder {
+input:focus:-moz-placeholder,
+textarea:focus:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: transparent;
 }
 
-input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: transparent;
 }
 
-input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: transparent;
 }
@@ -62,7 +102,18 @@ table {
   border-spacing: 0;
 }
 
-header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption, address {
+header,
+footer,
+section,
+article,
+aside,
+nav,
+hgroup,
+details,
+menu,
+figure,
+figcaption,
+address {
   display: block;
 }
 
@@ -78,5 +129,5 @@ body {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   word-break: break-all;
-  -webkit-user-select:none;
+  -webkit-user-select: none;
 }
