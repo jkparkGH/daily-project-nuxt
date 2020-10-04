@@ -27,7 +27,8 @@ export default {
   position: relative;
   text-align: center;
   padding: 2rem;
-  margin-top: 2.8rem;
+  margin-top: 5rem;
+  margin-bottom: 0.5rem;
   font-size: 1.25rem;
   &:before {
     position: absolute;

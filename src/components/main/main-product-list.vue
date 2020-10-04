@@ -3,7 +3,7 @@
     <ContentTitle
       :info="{
         title: 'New Arrivals',
-        text: 'Lorem ipsum dolor sit amet conse',
+        text: 'Lorem ipsum dolor sit amet Arrivals',
       }"
     />
     <!-- New Arrivals -->
