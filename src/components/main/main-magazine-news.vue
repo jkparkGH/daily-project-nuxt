@@ -3,7 +3,7 @@
     <ContentTitle
       :info="{
         title: 'Magazine News',
-        text: 'Lorem ipsum dolor sit amet News',
+        text: 'Lorem ipsum dolor sit amet News'
       }"
     />
     <div class="common-item-box">
@@ -66,8 +66,8 @@ import ContentTitle from "./content-title";
 export default {
   name: "main-magazine-news",
   components: {
-    ContentTitle,
-  },
+    ContentTitle
+  }
 };
 </script>
 

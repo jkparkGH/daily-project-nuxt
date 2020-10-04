@@ -3,7 +3,7 @@
     <ContentTitle
       :info="{
         title: 'New Arrivals',
-        text: 'Lorem ipsum dolor sit amet Arrivals',
+        text: 'Lorem ipsum dolor sit amet Arrivals'
       }"
     />
     <!-- New Arrivals -->
@@ -253,8 +253,8 @@ import ContentTitle from "./content-title";
 export default {
   name: "main-product-list",
   components: {
-    ContentTitle,
-  },
+    ContentTitle
+  }
 };
 </script>
 

@@ -21,8 +21,8 @@ export default {
     MainProudctList,
     MainFeaturedCategory,
     MainMagazineNews,
-    MainCoperationList,
-  },
+    MainCoperationList
+  }
 };
 </script>
 
@@ -32,4 +32,3 @@ export default {
   padding-bottom: 4rem;
 }
 </style>
-

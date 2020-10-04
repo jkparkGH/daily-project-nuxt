@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  name: "main-banner",
+  name: "main-banner"
 };
 </script>
 

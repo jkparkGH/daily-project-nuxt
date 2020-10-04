@@ -14,11 +14,11 @@ export default {
       default() {
         return {
           title: "-",
-          text: "-",
+          text: "-"
         };
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
 

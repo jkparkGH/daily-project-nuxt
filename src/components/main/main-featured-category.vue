@@ -3,7 +3,7 @@
     <ContentTitle
       :info="{
         title: 'Featured Category',
-        text: 'Lorem ipsum dolor sit amet category',
+        text: 'Lorem ipsum dolor sit amet category'
       }"
     />
     <div class="common-item-box">
@@ -51,8 +51,8 @@ import ContentTitle from "./content-title";
 export default {
   name: "main-featured-category",
   components: {
-    ContentTitle,
-  },
+    ContentTitle
+  }
 };
 </script>
 
