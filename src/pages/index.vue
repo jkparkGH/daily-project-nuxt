@@ -5,6 +5,7 @@
     <MainFeaturedCategory />
     <MainMagazineNews />
     <MainCoperationList />
+    <MainSlogan />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import MainProudctList from "@/components/main/main-product-list";
 import MainFeaturedCategory from "@/components/main/main-featured-category";
 import MainMagazineNews from "@/components/main/main-magazine-news";
 import MainCoperationList from "@/components/main/main-coperation-list";
+import MainSlogan from "@/components/main/main-slogan";
 export default {
   name: "main-landing",
   components: {
@@ -21,7 +23,8 @@ export default {
     MainProudctList,
     MainFeaturedCategory,
     MainMagazineNews,
-    MainCoperationList
+    MainCoperationList,
+    MainSlogan
   }
 };
 </script>
