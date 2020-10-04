@@ -7,7 +7,7 @@
       }"
     />
     <!-- New Arrivals -->
-    <div class="div_item_box">
+    <div class="common-item-box">
       <ul class="main-product-list">
         <li class="new sale">
           <div class="main-product-list__label-container">
