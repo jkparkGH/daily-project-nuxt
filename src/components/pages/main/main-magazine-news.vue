@@ -1,11 +1,5 @@
 <template>
   <section>
-    <ContentTitle
-      :info="{
-        title: 'Magazine News',
-        text: 'Lorem ipsum dolor sit amet News'
-      }"
-    />
     <div class="common-item-box">
       <ul class="magazine-news-list">
         <li>
@@ -62,12 +56,8 @@
 </template>
 
 <script>
-import ContentTitle from "./content-title";
 export default {
-  name: "main-magazine-news",
-  components: {
-    ContentTitle
-  }
+  name: "main-magazine-news"
 };
 </script>
 

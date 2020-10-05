@@ -1,11 +1,5 @@
 <template>
   <section>
-    <ContentTitle
-      :info="{
-        title: 'New Arrivals',
-        text: 'Lorem ipsum dolor sit amet Arrivals'
-      }"
-    />
     <!-- New Arrivals -->
     <div class="common-item-box">
       <ul class="main-product-list">
@@ -18,7 +12,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-55-270x220.png"
-              alt="product image(script로 개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -48,7 +42,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-13-270x220.png"
-              alt="product image(script로개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -76,7 +70,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-16-270x220.png"
-              alt="product image(script로개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -104,7 +98,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-31-270x220.png"
-              alt="product image(script로개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -134,7 +128,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-34-270x220.png"
-              alt="product image(script로개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -162,7 +156,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-37-270x220.png"
-              alt="product image(script로개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -192,7 +186,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-40-270x220.png"
-              alt="product image(script로개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -222,7 +216,7 @@
             <img
               class="product-image"
               src="~@/assets/images/product-46-270x220.png"
-              alt="product image(script로개별 입력)"
+              alt="product image"
             />
             <a class="product-dim" href="#_">
               <span class="product-dim__view-detail">View detail</span>
@@ -249,12 +243,8 @@
 </template>
 
 <script>
-import ContentTitle from "./content-title";
 export default {
-  name: "main-product-list",
-  components: {
-    ContentTitle
-  }
+  name: "main-product-list"
 };
 </script>
 

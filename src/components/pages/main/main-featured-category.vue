@@ -1,11 +1,5 @@
 <template>
   <section>
-    <ContentTitle
-      :info="{
-        title: 'Featured Category',
-        text: 'Lorem ipsum dolor sit amet category'
-      }"
-    />
     <div class="common-item-box">
       <ul class="ul_category_list">
         <li>
@@ -47,12 +41,8 @@
 </template>
 
 <script>
-import ContentTitle from "./content-title";
 export default {
-  name: "main-featured-category",
-  components: {
-    ContentTitle
-  }
+  name: "main-featured-category"
 };
 </script>
 

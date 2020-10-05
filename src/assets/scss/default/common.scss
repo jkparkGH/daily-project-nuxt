@@ -52,6 +52,12 @@
   background-color: #e1e1e1;
 }
 
+// common-container
+.common-layout {
+  min-height: 400px;
+  padding-bottom: 4rem;
+}
+
 .common-item-box {
   width: 96%;
   margin: 0 auto;
@@ -61,4 +67,11 @@
     clear: both;
     content: "";
   }
+}
+
+.h3_detail_category {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  font-size: 0.78rem;
 }
