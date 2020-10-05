@@ -11,18 +11,23 @@
         <i></i><i></i><i></i>
       </button>
       <h1 class="common-header__logo">
-        <a href="#" aria-label="뷰티하우스 로고" title="뷰티하우스 로고">
+        <router-link
+          :to="{ path: '/' }"
+          aria-label="뷰티하우스 로고"
+          title="뷰티하우스 로고"
+        >
           <img
             src="~@/assets/images/logo_header_white.png"
             alt="뷰티하우스 로고 이미지"
           />
-        </a>
+        </router-link>
       </h1>
       <div class="float_right">
         <nav class="web-gnb">
           <ul id="ul_gnb_header">
-            <!-- <li class="on"><a href="#_">Home</a></li> -->
-            <li><a href="#_">Products</a></li>
+            <li>
+              <router-link :to="{ path: '/products' }">Products</router-link>
+            </li>
             <li><a href="#_">Event</a></li>
             <li><a href="#_">Contact us</a></li>
             <li><a href="#_">My page</a></li>
@@ -71,7 +76,7 @@ export default {
   name: "common-header",
   methods: {
     // needs nav_on toggle
-  }
+  },
 };
 </script>
 

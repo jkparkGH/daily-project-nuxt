@@ -77,5 +77,18 @@ module.exports = {
   },
   serverMiddleware: [
     { path: "/health/check", handler: "~/serverMiddleware/healthCheck.js" }
-  ]
+  ],
+
+  transition: {
+    name: "fade",
+    mode: "out-in",
+    beforeEnter(el) {
+      console.log("### enter page before ###", el);
+    }
+  },
+
+  layoutTransition: {
+    name: "layout",
+    mode: "out-in"
+  }
 };
