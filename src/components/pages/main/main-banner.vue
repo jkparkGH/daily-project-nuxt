@@ -2,8 +2,12 @@
   <section>
     <h3 class="_blind">Main banner slide</h3>
     <!-- main-banner-slide -->
-    <div class="main-banner-slide" id="mainBanner">
-      <div class="main-banner-slide__item-container">
+    <Swiper
+      class="main-banner-slide"
+      @slideChange="onSlideChange"
+      :options="swiperOptionsObject"
+    >
+      <SwiperSlide class="main-banner-slide__item-container">
         <img
           class="img_full"
           src="~@/assets/images/main_banner02.jpg"
@@ -19,8 +23,8 @@
           </span>
           <a class="link-more-view" href="#_">More View</a>
         </div>
-      </div>
-      <div class="main-banner-slide__item-container">
+      </SwiperSlide>
+      <SwiperSlide class="main-banner-slide__item-container">
         <img
           class="img_full"
           src="~@/assets/images/main_banner01.jpg"
@@ -36,18 +40,38 @@
           </span>
           <a class="link-more-view" href="#_">More View</a>
         </div>
-      </div>
-    </div>
+      </SwiperSlide>
+    </Swiper>
   </section>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+
 export default {
-  name: "main-banner"
+  name: "main-banner",
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  data() {
+    return {
+      swiperOptionsObject: {
+        loop: true
+      }
+    };
+  },
+  methods: {
+    onSlideChange(e) {
+      console.log("slide change", e);
+    }
+  }
 };
 </script>
 
 <style lang="scss">
+@import "swiper/swiper.scss";
+
 /* main-banner-slide */
 $modules: "main-banner-slide";
 .#{$modules} {

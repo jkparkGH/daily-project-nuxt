@@ -81,10 +81,10 @@ module.exports = {
 
   transition: {
     name: "fade",
-    mode: "out-in",
-    beforeEnter(el) {
-      console.log("### enter page before ###", el);
-    }
+    mode: "out-in"
+    // beforeEnter(el) {
+    //   console.log("### enter page before ###", el);
+    // }
   },
 
   layoutTransition: {

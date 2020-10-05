@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "not-found-page"
+  name: "not-found-page",
 };
 </script>
 
@@ -15,6 +15,7 @@ h3 {
   font-size: 20px;
   color: #333;
   text-align: center;
+  padding: 300px 20px;
 }
 section {
   border-radius: 4px;
