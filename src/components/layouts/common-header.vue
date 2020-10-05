@@ -5,7 +5,8 @@
       <button
         type="button"
         class="btn-mobile-navigation"
-        id="menuButton"
+        :class="{ nav_on: navigationOn }"
+        @click="toggleNavigation"
         aria-label="헤더 메뉴 버튼(모바일 기기 전용)"
       >
         <i></i><i></i><i></i>
@@ -28,43 +29,76 @@
             <li>
               <router-link :to="{ path: '/products' }">Products</router-link>
             </li>
-            <li><a href="#_">Event</a></li>
-            <li><a href="#_">Contact us</a></li>
-            <li><a href="#_">My page</a></li>
+            <li>
+              <router-link :to="{ path: '/events' }">Events</router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/contactus' }">Contact us</router-link>
+            </li>
+            <li>
+              <router-link :to="{ path: '/mypage' }">My page</router-link>
+            </li>
           </ul>
         </nav>
         <ul class="header-button-group">
           <li>
-            <a href="#_" class="btn_login"><span>Login</span></a>
+            <button type="button" class="btn-login"><span>Login</span></button>
           </li>
           <li>
-            <a href="#_" class="btn_signup"><span>SignUp</span></a>
+            <button type="button" class="btn-signup">
+              <span>SignUp</span>
+            </button>
           </li>
           <li>
-            <a href="#_" class="btn_cart"
-              ><span>Cart</span><span class="cart_count">0</span></a
-            >
+            <button type="button" class="btn-cart">
+              <span>Cart</span><span class="cart-count">0</span>
+            </button>
           </li>
         </ul>
       </div>
     </div>
     <!-- aside : mobile-gnb -->
-    <aside class="mobile-gnb" id="navigationMobile">
-      <div class="mobile-gnb__dim"></div>
+    <aside
+      class="mobile-gnb"
+      :class="{ nav_on: navigationOn }"
+      id="navigationMobile"
+    >
+      <div class="mobile-gnb__dim" @click="toggleNavigation"></div>
       <nav class="mobile-gnb__cotainer">
         <ul class="menu-list-main">
-          <li class="on"><a href="#_">HOME</a></li>
-          <li><a href="#_">PRODUCT</a></li>
-          <li><a href="#_">EVENT</a></li>
-          <li><a href="#_">JOIN</a></li>
-          <li><a href="#_">MY PAGE</a></li>
+          <li>
+            <router-link :to="{ path: '/products' }">PRODUCTS</router-link>
+          </li>
+          <li>
+            <router-link :to="{ path: '/events' }">EVENTS</router-link>
+          </li>
+          <li>
+            <router-link :to="{ path: '/contactus' }">CONTACT US</router-link>
+          </li>
+          <li>
+            <router-link :to="{ path: '/mypage' }">MY PAGE</router-link>
+          </li>
         </ul>
         <ul class="menu-list-sub">
-          <li><a href="#">Shipping</a></li>
-          <li><a href="#">Returns / Exchage</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li>
+            <router-link :to="{ path: '/shipping' }">Shipping</router-link>
+          </li>
+          <li>
+            <router-link :to="{ path: '/returns' }">
+              Returns / Exchage
+            </router-link>
+          </li>
+          <li>
+            <router-link :to="{ path: '/policy' }">Privacy Policy</router-link>
+          </li>
+          <li>
+            <router-link :to="{ path: '/terms' }">
+              Terms &amp; Conditions
+            </router-link>
+          </li>
+          <li>
+            <router-link :to="{ path: '/contactus' }">Contact Us</router-link>
+          </li>
         </ul>
       </nav>
     </aside>
@@ -74,23 +108,32 @@
 <script>
 export default {
   name: "common-header",
-  methods: {
-    // needs nav_on toggle
+  data() {
+    return {
+      navigationOn: false
+    };
   },
+  watch: {
+    $route: function(to, from) {
+      this.navigationOn = false;
+    }
+  },
+  methods: {
+    toggleNavigation() {
+      this.navigationOn = !this.navigationOn;
+    }
+  }
 };
 </script>
 
 <style lang="scss">
-/* header */
 $modules: "common-header";
 .#{$modules} {
-  /*background-color:#fe708a;*/
   width: 100%;
   height: 52px;
   overflow: visible;
   position: relative;
   z-index: 5;
-
   &__container {
     position: fixed;
     top: 0;
@@ -121,7 +164,6 @@ $modules: "common-header";
       width: 100%;
       height: auto;
     }
-
     @media only screen and (min-width: 769px) {
       left: 25px;
       margin-left: 0;
@@ -220,7 +262,7 @@ $modules: "common-header";
         display: none;
       }
     }
-    a {
+    button {
       color: #c0c0c0;
       font-size: 15px;
       display: block;
@@ -229,13 +271,13 @@ $modules: "common-header";
         font-size: 13px;
         padding: 1.1rem 0.3rem;
       }
-      &.btn_login:before {
+      &.btn-login:before {
         background-image: url("~@/assets/images/icon_login.png");
       }
-      &.btn_signup:before {
+      &.btn-signup:before {
         background-image: url("~@/assets/images/icon_join.png");
       }
-      &.btn_cart:before {
+      &.btn-cart:before {
         background-image: url("~@/assets/images/icon_cart.png");
       }
       &:before {
@@ -254,7 +296,7 @@ $modules: "common-header";
         display: inline-block;
         vertical-align: middle;
         padding-left: 5px;
-        &.cart_count {
+        &.cart-count {
           display: inline-block;
           border-radius: 20px;
           width: 15px;
@@ -270,9 +312,11 @@ $modules: "common-header";
         }
       }
     }
-    &:hover a,
-    &.on a {
-      color: #fff;
+    &:hover button,
+    &.on button {
+      span {
+        color: #fff;
+      }
     }
   }
 }
@@ -307,6 +351,7 @@ $modules: "mobile-gnb";
     left: 0%;
     width: 84%;
     height: 100%;
+    overflow: auto;
     background-color: #151515;
     z-index: 3;
     transition: left 0.3s ease-out;
@@ -324,9 +369,6 @@ $modules: "mobile-gnb";
         padding-top: 52px;
         & > li {
           border-bottom: 1px solid #fff;
-        }
-        & > li:first-child {
-          border-top: 1px solid rgb(151, 147, 147);
         }
         & > li a {
           color: #fff;
