@@ -22,7 +22,7 @@
         <nav class="web-gnb">
           <ul id="ul_gnb_header">
             <!-- <li class="on"><a href="#_">Home</a></li> -->
-            <li><a href="#_">Product</a></li>
+            <li><a href="#_">Products</a></li>
             <li><a href="#_">Event</a></li>
             <li><a href="#_">Contact us</a></li>
             <li><a href="#_">My page</a></li>

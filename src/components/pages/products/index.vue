@@ -18,7 +18,7 @@ import ContentTitle from "@/components/common/content-title";
 import MainProudctList from "@/components/pages/main/main-product-list";
 import ProductsSearch from "@/components/pages/products/products-search";
 export default {
-  name: "products",
+  name: "products-index",
   components: {
     ContentTitle,
     ProductsSearch,

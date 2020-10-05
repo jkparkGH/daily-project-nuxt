@@ -36,7 +36,7 @@ import MainMagazineNews from "@/components/pages/main/main-magazine-news";
 import MainCoperationList from "@/components/pages/main/main-coperation-list";
 import MainSlogan from "@/components/pages/main/main-slogan";
 export default {
-  name: "main-landing",
+  name: "main-index",
   components: {
     ContentTitle,
     MainBanner,
