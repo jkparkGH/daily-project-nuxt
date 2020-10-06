@@ -1,6 +1,6 @@
 <template>
   <!-- Login -->
-  <div class="login-modal" v-show="false">
+  <div class="login-modal" v-show="true" :class="{ hide: !showLoginModal }">
     <div class="login-modal__content">
       <div class="template-login">
         <button
@@ -8,11 +8,12 @@
           class="btn-modal-close"
           aria-label="close button in modal"
           title="close button in modal"
+          @click="closeLoginModal"
         >
           X
         </button>
         <!-- type: login -->
-        <form v-if="true">
+        <form v-if="typeLoginModal === 'login'">
           <div class="template-login__content">
             <h4 class="template-login__title">Login</h4>
             <h5 class="template-login__subtitle">Email</h5>
@@ -23,9 +24,13 @@
             <div class="template-login__textfield">
               <input type="password" />
             </div>
-            <a class="template-login__link-text" href="#_"
-              >Forget your password?</a
+            <button
+              type="button"
+              class="template-login__link-text"
+              @click="toggleLoginModal"
             >
+              Forget your password?
+            </button>
             <div class="template-login__button-container">
               <button
                 type="button"
@@ -47,7 +52,13 @@
           </div>
           <div class="template-login__switch-template">
             <p>Have not joined yet?</p>
-            <a class="template-login__link-text" href="#_">Sign up</a>
+            <button
+              type="button"
+              class="template-login__link-text"
+              @click="toggleLoginModal"
+            >
+              Sign up
+            </button>
           </div>
         </form>
         <!-- type: sign up -->
@@ -87,7 +98,13 @@
           </div>
           <div class="template-login__switch-template">
             <p>Already signed up?</p>
-            <a class="template-login__link-text" href="#_">Login</a>
+            <button
+              type="button"
+              class="template-login__link-text"
+              @click="toggleLoginModal"
+            >
+              Login
+            </button>
           </div>
         </form>
       </div>
@@ -96,8 +113,32 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "login-signup-modal"
+  name: "login-signup-modal",
+  computed: {
+    ...mapGetters({
+      showLoginModal: "uiInteraction/showLoginModal",
+      typeLoginModal: "uiInteraction/typeLoginModal"
+    })
+  },
+  methods: {
+    ...mapActions({
+      TOGGLE_LOGIN_MODAL: "uiInteraction/TOGGLE_LOGIN_MODAL",
+      CHANGE_STATE_LOGIN_MODAL: "uiInteraction/CHANGE_STATE_LOGIN_MODAL"
+    }),
+    closeLoginModal() {
+      this.TOGGLE_LOGIN_MODAL(false);
+    },
+    toggleLoginModal() {
+      console.log(this.typeLoginModal);
+      if (this.typeLoginModal === "login") {
+        this.CHANGE_STATE_LOGIN_MODAL("singup");
+      } else {
+        this.CHANGE_STATE_LOGIN_MODAL("login");
+      }
+    }
+  }
 };
 </script>
 
@@ -115,7 +156,7 @@ $modules: "login-modal";
   overflow: auto;
   z-index: 20;
   opacity: 1;
-  transition: all 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
 
   &:before {
     width: 0;
@@ -141,6 +182,10 @@ $modules: "login-modal";
 
   &.hide {
     opacity: 0;
+    overflow: hidden;
+    height: 0;
+    width: 0;
+    transition: opacity 0.3s ease-out;
   }
 
   &.hide .login-modal__content {

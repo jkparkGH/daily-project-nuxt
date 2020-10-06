@@ -42,10 +42,20 @@
         </nav>
         <ul class="header-button-group">
           <li>
-            <button type="button" class="btn-login"><span>Login</span></button>
+            <button
+              type="button"
+              class="btn-login"
+              @click="openLoginModal('login')"
+            >
+              <span>Login</span>
+            </button>
           </li>
           <li>
-            <button type="button" class="btn-signup">
+            <button
+              type="button"
+              class="btn-signup"
+              @click="openLoginModal('signup')"
+            >
               <span>SignUp</span>
             </button>
           </li>
@@ -106,6 +116,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "common-header",
   data() {
@@ -121,6 +133,15 @@ export default {
   methods: {
     toggleNavigation() {
       this.navigationOn = !this.navigationOn;
+    },
+    // $store > uiInteraction
+    ...mapActions({
+      TOGGLE_LOGIN_MODAL: "uiInteraction/TOGGLE_LOGIN_MODAL",
+      CHANGE_STATE_LOGIN_MODAL: "uiInteraction/CHANGE_STATE_LOGIN_MODAL"
+    }),
+    openLoginModal(typeString) {
+      this.CHANGE_STATE_LOGIN_MODAL(typeString);
+      this.TOGGLE_LOGIN_MODAL(true);
     }
   }
 };

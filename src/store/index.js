@@ -1,11 +1,11 @@
-import Vuex from 'vuex'
+import Vuex from "vuex";
+import uiInteraction from "@/store/modules/ui-interaction";
 
-const vuexStore = () => {
+export default () => {
   return new Vuex.Store({
-    namespaced: true,
+    namespaced: false,
     modules: {
+      uiInteraction
     }
-  })
-}
-
-export default vuexStore
+  });
+};
