@@ -7,7 +7,12 @@
       @slideChange="onSlideChange"
       :options="swiperOptionsObject"
     >
-      <SwiperSlide class="main-banner-slide__item-container">
+      <SwiperSlide
+        class="main-banner-slide__item-container"
+        :style="{
+          backgroundImage: `url('_nuxt/src/assets/images/main_banner02.jpg')`
+        }"
+      >
         <img
           class="img_full"
           src="~@/assets/images/main_banner02.jpg"
@@ -24,7 +29,12 @@
           <a class="link-more-view" href="#_">More View</a>
         </div>
       </SwiperSlide>
-      <SwiperSlide class="main-banner-slide__item-container">
+      <SwiperSlide
+        class="main-banner-slide__item-container"
+        :style="{
+          backgroundImage: `url('_nuxt/src/assets/images/main_banner01.jpg')`
+        }"
+      >
         <img
           class="img_full"
           src="~@/assets/images/main_banner01.jpg"
@@ -57,8 +67,15 @@ export default {
   data() {
     return {
       swiperOptionsObject: {
-        loop: true
-      }
+        loop: true,
+        breakpoints: {
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 0
+          }
+        }
+      },
+      backgroundImageUrl: "~@/assets/images/main_banner02.jpg"
     };
   },
   methods: {

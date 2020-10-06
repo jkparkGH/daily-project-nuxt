@@ -78,7 +78,6 @@ module.exports = {
   serverMiddleware: [
     { path: "/health/check", handler: "~/serverMiddleware/healthCheck.js" }
   ],
-
   transition: {
     name: "fade",
     mode: "out-in"
@@ -86,9 +85,23 @@ module.exports = {
     //   console.log("### enter page before ###", el);
     // }
   },
-
   layoutTransition: {
     name: "layout",
     mode: "out-in"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|svg|gif|jpeg)/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 100000
+            }
+          }
+        ]
+      }
+    ]
   }
 };
