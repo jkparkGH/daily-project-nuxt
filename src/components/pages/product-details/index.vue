@@ -3,27 +3,35 @@
     <h3 class="_blind">Product Detail</h3>
     <p class="category-tag">
       <a href="#_" class="back-to-list">◀<span>Back to List</span></a>
-      <span>Products | <strong>Flower Spray By Kenzo For Women</strong></span>
+      <span
+        >Products | <strong>{{ productDetailData.name }}</strong></span
+      >
     </p>
     <div class="product-details">
       <div class="product-details__container">
         <div class="product-details__image">
-          <img src="~@/assets/images/product-37-270x220.png" alt="product-37" />
+          <img
+            :src="'/temp/products/' + productDetailData.images"
+            :alt="`product ${productDetailData.uid}`"
+          />
         </div>
       </div>
       <div class="product-details__container">
         <h4 class="product-details__product-name">
-          Flower Spray By Kenzo For Women
+          {{ productDetailData.name }}
         </h4>
         <p class="product-details__price">
-          <span class="_price-before">￦90,000</span>
-          <span class="_price-current">￦70,000</span>
+          <span class="_price-before"
+            >￦{{ productDetailData.beforePrice | toCurrency }}</span
+          >
+          <span class="_price-current"
+            >￦{{ productDetailData.crrPrice | toCurrency }}</span
+          >
         </p>
-        <p class="product-details__info-summary">
-          Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco.
-        </p>
+        <p
+          class="product-details__info-summary"
+          :html="productDetailData.summary"
+        ></p>
         <div class="product-details__purchase-amount-select">
           <select name="" id="cust_purchase_count">
             <option value="1">1</option>
@@ -38,36 +46,15 @@
         <ul class="product-details__product-info-list">
           <li>
             <h4>Info</h4>
-            <p>
-              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco. Lorem
-              ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco.
-            </p>
+            <p v-html="productDetailData.infoList.info"></p>
           </li>
           <li>
             <h4>Reviews</h4>
-            <p>
-              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
+            <p v-html="productDetailData.infoList.reviews"></p>
           </li>
           <li>
             <h4>Shipping</h4>
-            <p>
-              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco. Lorem
-              ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-              minim veniam, quis nostrud exercitation ullamco.
-              <br />Lorem ipsum dolor sit amet conse ctetur adipisicing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-            </p>
+            <p v-html="productDetailData.infoList.shipping"></p>
           </li>
         </ul>
       </div>
@@ -76,8 +63,27 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "product-details-index"
+  name: "product-details-index",
+  computed: {
+    // ...mapGetters({
+    //   productDetailData: "products/productDetailData"
+    // })
+    productDetailData() {
+      return this.$store.getters["products/productDetailData"];
+    }
+  },
+  methods: {
+    ...mapActions({
+      GET_PRODUCT_DETAIL: "products/GET_PRODUCT_DETAIL"
+    })
+  },
+  mounted() {
+    this.GET_PRODUCT_DETAIL({
+      uid: this.$route.params.uid
+    });
+  }
 };
 </script>
 

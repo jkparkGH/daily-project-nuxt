@@ -1,11 +1,13 @@
 import Vuex from "vuex";
 import uiInteraction from "@/store/modules/ui-interaction";
+import products from "@/store/modules/products";
 
 export default () => {
   return new Vuex.Store({
-    namespaced: false,
+    namespaced: true,
     modules: {
-      uiInteraction
+      uiInteraction,
+      products
     }
   });
 };

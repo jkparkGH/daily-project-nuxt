@@ -3,231 +3,36 @@
     <!-- New Arrivals -->
     <div class="common-item-box">
       <ul class="main-product-list">
-        <li class="new sale">
+        <li
+          v-for="(item, $index) in products"
+          :key="'products' + $index"
+          :class="{ new: item.new, sale: item.sale }"
+          :data-product-uid="item.uid"
+        >
           <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
+            <span class="label-new" v-if="item.new">New</span>
+            <span class="label-sale" v-if="item.sale">Sale</span>
           </div>
           <div class="main-product-list__image-container">
             <img
               class="product-image"
-              src="~@/assets/images/product-55-270x220.png"
+              :src="'/temp/products/' + item.images"
               alt="product image"
             />
-            <a class="product-dim" href="#_">
+            <router-link class="product-dim" :to="'/products/' + item.uid">
               <span class="product-dim__view-detail">View detail</span>
-            </a>
+            </router-link>
           </div>
-          <p class="main-product-list__category">Women's</p>
+          <p class="main-product-list__category">{{ item.gender }}</p>
           <p class="main-product-list__item-name">
-            NINA RICCI FAROUCHE LALIQUE PERFUME
+            {{ item.name }}
           </p>
-          <p class="main-product-list__price-before">￦<span>100,000</span></p>
-          <p class="main-product-list__price-current">￦<span>70,000</span></p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
-          </div>
-        </li>
-        <li class="new sale">
-          <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
-          </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              src="~@/assets/images/product-13-270x220.png"
-              alt="product image"
-            />
-            <a class="product-dim" href="#_">
-              <span class="product-dim__view-detail">View detail</span>
-            </a>
-          </div>
-          <p class="main-product-list__category">Women's</p>
-          <p class="main-product-list__item-name">Nina Ricci Spray For Women</p>
-          <p class="main-product-list__price-before">￦<span>100,000</span></p>
-          <p class="main-product-list__price-current">￦<span>70,000</span></p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
-          </div>
-        </li>
-        <li class="new sale">
-          <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
-          </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              src="~@/assets/images/product-16-270x220.png"
-              alt="product image"
-            />
-            <a class="product-dim" href="#_">
-              <span class="product-dim__view-detail">View detail</span>
-            </a>
-          </div>
-          <p class="main-product-list__category">Women's</p>
-          <p class="main-product-list__item-name">LANVIN women perfum spray</p>
-          <p class="main-product-list__price-before">￦<span>100,000</span></p>
-          <p class="main-product-list__price-current">￦<span>70,000</span></p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
-          </div>
-        </li>
-        <li class="new sale">
-          <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
-          </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              src="~@/assets/images/product-31-270x220.png"
-              alt="product image"
-            />
-            <a class="product-dim" href="#_">
-              <span class="product-dim__view-detail">View detail</span>
-            </a>
-          </div>
-          <p class="main-product-list__category">Man's</p>
-          <p class="main-product-list__item-name">
-            Versace Man Fraiche By Gianni Versace
+          <p class="main-product-list__price-before">
+            ￦<span>{{ item.beforePrice | toCurrency }}</span>
           </p>
-          <p class="main-product-list__price-before">￦<span>90,000</span></p>
-          <p class="main-product-list__price-current">￦<span>80,000</span></p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
-          </div>
-        </li>
-        <li class="new sale">
-          <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
-          </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              src="~@/assets/images/product-34-270x220.png"
-              alt="product image"
-            />
-            <a class="product-dim" href="#_">
-              <span class="product-dim__view-detail">View detail</span>
-            </a>
-          </div>
-          <p class="main-product-list__category">Man's</p>
-          <p class="main-product-list__item-name">Versace Eros Toilette</p>
-          <p class="main-product-list__price-before">￦<span>110,000</span></p>
-          <p class="main-product-list__price-current">￦<span>76,000</span></p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
-          </div>
-        </li>
-        <li class="new sale">
-          <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
-          </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              src="~@/assets/images/product-37-270x220.png"
-              alt="product image"
-            />
-            <a class="product-dim" href="#_">
-              <span class="product-dim__view-detail">View detail</span>
-            </a>
-          </div>
-          <p class="main-product-list__category">Women's</p>
-          <p class="main-product-list__item-name">
-            Flower Spray By Kenzo For Women
+          <p class="main-product-list__price-current">
+            ￦<span>{{ item.crrPrice | toCurrency }}</span>
           </p>
-          <p class="main-product-list__price-before">￦<span>90,000</span></p>
-          <p class="main-product-list__price-current">￦<span>70,000</span></p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
-          </div>
-        </li>
-        <li class="new sale">
-          <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
-          </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              src="~@/assets/images/product-40-270x220.png"
-              alt="product image"
-            />
-            <a class="product-dim" href="#_">
-              <span class="product-dim__view-detail">View detail</span>
-            </a>
-          </div>
-          <p class="main-product-list__category">Women's</p>
-          <p class="main-product-list__item-name">
-            Vince Camuto Perfume Spray for Women
-          </p>
-          <p class="main-product-list__price-before">￦<span>100,000</span></p>
-          <p class="main-product-list__price-current">￦<span>70,000</span></p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
-          </div>
-        </li>
-        <li class="new sale">
-          <div class="main-product-list__label-container">
-            <span class="label-new">New</span>
-            <span class="label-sale">Sale</span>
-          </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              src="~@/assets/images/product-46-270x220.png"
-              alt="product image"
-            />
-            <a class="product-dim" href="#_">
-              <span class="product-dim__view-detail">View detail</span>
-            </a>
-          </div>
-          <p class="main-product-list__category">Men's</p>
-          <p class="main-product-list__item-name">
-            Zino Davidoff Hot Water For Men
-          </p>
-          <p class="main-product-list__price-before">￦<span>110,000</span></p>
-          <p class="main-product-list__price-current">￦<span>90,000</span></p>
           <div class="main-product-list__button-container">
             <button type="button" class="btn-product add-cart">
               Add<br />Cart
@@ -243,8 +48,24 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "main-product-list"
+  name: "main-product-list",
+  computed: {
+    ...mapGetters({
+      products: "products/products"
+    })
+  },
+  methods: {
+    ...mapActions({
+      GET_PRODUCTS: "products/GET_PRODUCTS"
+    })
+  },
+  mounted() {
+    this.GET_PRODUCTS().then(() => {
+      console.log(this.products); // ? 왜 안됨??
+    });
+  }
 };
 </script>
 
@@ -280,6 +101,7 @@ $modules: "main-product-list";
     top: 7px;
     left: 7px;
     z-index: 2;
+    min-height: 166px;
     &:after {
       content: "";
       display: table;

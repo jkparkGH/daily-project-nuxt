@@ -1,7 +1,6 @@
 const state = () => ({
   showLoginModal: false,
-  typeLoginModal: "login", // login or signup
-  etc: 0
+  typeLoginModal: "login" // login or signup
 });
 
 const getters = {
