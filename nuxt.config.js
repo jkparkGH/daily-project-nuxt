@@ -40,6 +40,13 @@ module.exports = {
             }
           ]
         ];
+      },
+      plugins({ isDev }) {
+        if (isDev) {
+          return [];
+        } else {
+          return ["transform-remove-console"];
+        }
       }
     },
     extend(config, { isDev, isClient, isServer }) {

@@ -197,7 +197,7 @@ let data = {
       new: false,
       sale: true,
       beforePrice: 120000,
-      crrPrice: 11000,
+      crrPrice: 90000,
       images: "product-58-270x220.png"
     }
   ],

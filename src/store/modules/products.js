@@ -34,8 +34,8 @@ const state = () => ({
   searchInfo: {
     searchText: "",
     ascending: {
-      cost: false,
-      name: false
+      cost: null,
+      name: null
     }
   },
   getProductsProcessing: false,
@@ -55,7 +55,7 @@ const getters = {
 const mutations = {
   setStateProducts(state, productsList = []) {
     if (Array.isArray(productsList)) {
-      state.products = [...productsList];
+      state.products = productsList;
       console.log("## setStateProducts ##", state.products);
     }
   },
@@ -74,11 +74,10 @@ const mutations = {
     console.log("##state.setSearchInfoText##", state.searchInfo.searchText);
   },
   setSearchInfoAscending(state, crrSearchInfoAscending) {
-    state.searchInfo.ascending = {
-      ...state.searchInfo.ascending,
-      ...crrSearchInfoAscending
-    };
-    console.log("##state.searchInfo.ascending##", state.searchInfo);
+    console.log(crrSearchInfoAscending);
+    let result = { ...state.searchInfo.ascending, ...crrSearchInfoAscending };
+    state.searchInfo.ascending = result;
+    console.log("##state.searchInfo.ascending##", state.searchInfo.ascending);
   }
 };
 const actions = {

@@ -4,7 +4,7 @@
     <div class="common-item-box">
       <ul class="main-product-list">
         <li
-          v-for="(item, $index) in products"
+          v-for="(item, $index) in filteredProductList"
           :key="'products' + $index"
           :class="{ new: item.new, sale: item.sale }"
           :data-product-uid="item.uid"
@@ -53,17 +53,48 @@ export default {
   name: "main-product-list",
   computed: {
     ...mapGetters({
-      products: "products/products"
-    })
+      products: "products/products",
+      searchInfo: "products/searchInfo"
+    }),
+    filteredProductList() {
+      const { searchText, ascending } = this.searchInfo;
+      let result = this.products;
+      if (searchText) {
+        result = result.filter(
+          el => el.name.toLowerCase().indexOf(searchText) > -1
+        );
+      }
+      if (typeof ascending.cost === "boolean") {
+        result = result.slice().sort((a, b) => {
+          return ascending.cost
+            ? a.crrPrice - b.crrPrice
+            : b.crrPrice - a.crrPrice;
+        });
+      }
+      if (typeof ascending.name === "boolean") {
+        result = result.slice().sort((a, b) => {
+          return ascending.name ? -1 : 1;
+        });
+        this.$forceUpdate();
+      }
+      return result;
+    }
   },
   methods: {
     ...mapActions({
       GET_PRODUCTS: "products/GET_PRODUCTS"
-    })
+    }),
+    productsFilter(productsList) {
+      if (this.$route.path === "/products") {
+        return this.productListPageFilter(productsList);
+      } else {
+        return productsList;
+      }
+    }
   },
   mounted() {
     this.GET_PRODUCTS().then(() => {
-      console.log(this.products); // ? 왜 안됨??
+      console.log(this.products); // ? ARABABA
     });
   }
 };
