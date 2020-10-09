@@ -67,12 +67,9 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "product-details-index",
   computed: {
-    // ...mapGetters({
-    //   productDetailData: "products/productDetailData"
-    // })
-    productDetailData() {
-      return this.$store.getters["products/productDetailData"];
-    }
+    ...mapGetters({
+      productDetailData: "products/productDetailData"
+    })
   },
   methods: {
     ...mapActions({

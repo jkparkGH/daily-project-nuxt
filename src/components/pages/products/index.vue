@@ -8,21 +8,21 @@
     />
     <ProductsSearch />
     <div class="common-item-box">
-      <MainProudctList />
+      <ProudctList />
     </div>
   </section>
 </template>
 
 <script>
 import ContentTitle from "@/components/common/content-title";
-import MainProudctList from "@/components/pages/main/main-product-list";
+import ProudctList from "@/components/pages/products/products-list";
 import ProductsSearch from "@/components/pages/products/products-search";
 export default {
   name: "products-index",
   components: {
     ContentTitle,
     ProductsSearch,
-    MainProudctList
+    ProudctList
   }
 };
 </script>

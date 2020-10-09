@@ -2,19 +2,37 @@
   <!-- products-search -->
   <div class="products-search">
     <div class="products-search__textfield">
-      <input type="text" placeholder="Search Product Name" />
+      <input
+        type="text"
+        placeholder="Search Product Name"
+        v-model="searchText"
+      />
     </div>
     <ul class="products-search__sort">
       <li>
         <span>Cost</span>
-        <button type="button" title="sort up" aria-label="sort up">
-          ▲
+        <button
+          type="button"
+          title="sort button"
+          :aria-label="
+            `sort ${ascending.cost ? 'ascending' : 'descending'} button`
+          "
+          @click="ascendingTypeReverse('cost')"
+        >
+          {{ ascending.cost ? "▲" : "▼" }}
         </button>
       </li>
       <li>
         <span>Name</span>
-        <button type="button" title="sort down" aria-label="sort down">
-          ▼
+        <button
+          type="button"
+          title="sort button"
+          :aria-label="
+            `sort ${ascending.name ? 'ascending' : 'descending'} button`
+          "
+          @click="ascendingTypeReverse('name')"
+        >
+          {{ ascending.name ? "▲" : "▼" }}
         </button>
       </li>
     </ul>
@@ -22,7 +40,38 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters, mapActions } from "vuex";
+export default {
+  name: "product-search",
+  computed: {
+    ...mapGetters({
+      searchInfo: "products/searchInfo"
+    }),
+    searchText: {
+      get: function() {
+        return this.searchInfo.searchText;
+      },
+      set: function(value) {
+        this.SET_SEARCH_INFO_TEXT(value);
+      }
+    },
+    ascending() {
+      return this.searchInfo.ascending;
+    }
+  },
+  methods: {
+    ...mapActions({
+      SET_SEARCH_INFO_TEXT: "products/SET_SEARCH_INFO_TEXT",
+      SET_SEARCH_INFO_ASCENDING: "products/SET_SEARCH_INFO_ASCENDING"
+    }),
+    searchTextChange() {},
+    ascendingTypeReverse(typeString) {
+      this.SET_SEARCH_INFO_ASCENDING({
+        [typeString]: !this.ascending[typeString]
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss">

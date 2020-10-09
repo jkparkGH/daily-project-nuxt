@@ -7,7 +7,7 @@
         text: 'Lorem ipsum dolor sit amet Arrivals'
       }"
     />
-    <MainProudctList />
+    <ProudctList />
     <ContentTitle
       :info="{
         title: 'Featured Category',
@@ -30,7 +30,7 @@
 <script>
 import ContentTitle from "@/components/common/content-title";
 import MainBanner from "@/components/pages/main/main-banner";
-import MainProudctList from "@/components/pages/main/main-product-list";
+import ProudctList from "@/components/pages/products/products-list";
 import MainFeaturedCategory from "@/components/pages/main/main-featured-category";
 import MainMagazineNews from "@/components/pages/main/main-magazine-news";
 import MainCoperationList from "@/components/pages/main/main-coperation-list";
@@ -40,7 +40,7 @@ export default {
   components: {
     ContentTitle,
     MainBanner,
-    MainProudctList,
+    ProudctList,
     MainFeaturedCategory,
     MainMagazineNews,
     MainCoperationList,

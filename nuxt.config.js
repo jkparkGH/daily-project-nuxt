@@ -88,20 +88,5 @@ module.exports = {
   layoutTransition: {
     name: "layout",
     mode: "out-in"
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(png|jpg|svg|gif|jpeg)/i,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 100000
-            }
-          }
-        ]
-      }
-    ]
   }
 };

@@ -26,7 +26,9 @@
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam.
           </span>
-          <a class="link-more-view" href="#_">More View</a>
+          <router-link class="link-more-view" :to="'/products'">
+            More View
+          </router-link>
         </div>
       </SwiperSlide>
       <SwiperSlide
@@ -48,7 +50,9 @@
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco.
           </span>
-          <a class="link-more-view" href="#_">More View</a>
+          <router-link class="link-more-view" :to="'/products'">
+            More View
+          </router-link>
         </div>
       </SwiperSlide>
     </Swiper>

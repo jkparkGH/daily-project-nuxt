@@ -31,6 +31,13 @@ const state = () => ({
       shipping: ""
     }
   },
+  searchInfo: {
+    searchText: "",
+    ascending: {
+      cost: false,
+      name: false
+    }
+  },
   getProductsProcessing: false,
   getProductDetailsProcessing: false
 });
@@ -40,6 +47,9 @@ const getters = {
   },
   productDetailData: state => {
     return state.productDetailData;
+  },
+  searchInfo: state => {
+    return state.searchInfo;
   }
 };
 const mutations = {
@@ -54,9 +64,21 @@ const mutations = {
     console.log("## setStateProductDetail ##", state.productDetailData);
   },
   addProductDetailData(state, crrUid) {
+    // dummy Data
     let result = dummyData.dummyList.find(el => el.uid === parseInt(crrUid));
     state.productDetailData = { ...state.productDetailData, ...result };
     console.log("## addProductDetailData ##", state.productDetailData);
+  },
+  setSearchInfoText(state, crrSearchInfoText) {
+    state.searchInfo.searchText = crrSearchInfoText;
+    console.log("##state.setSearchInfoText##", state.searchInfo.searchText);
+  },
+  setSearchInfoAscending(state, crrSearchInfoAscending) {
+    state.searchInfo.ascending = {
+      ...state.searchInfo.ascending,
+      ...crrSearchInfoAscending
+    };
+    console.log("##state.searchInfo.ascending##", state.searchInfo);
   }
 };
 const actions = {
@@ -71,12 +93,11 @@ const actions = {
           },
           responseHandler: response => {
             commit("setStateProducts", response.products);
-            // resolve();
+            resolve();
           },
           errorHandler: reject,
           callback: () => {
             console.log("# callback #");
-
             commit("setStateProducts", dummyData.dummyList);
             resolve();
             state.getProductsProcessing = false;
@@ -105,6 +126,12 @@ const actions = {
         });
       }
     });
+  },
+  SET_SEARCH_INFO_TEXT({ commit }, params) {
+    commit("setSearchInfoText", params);
+  },
+  SET_SEARCH_INFO_ASCENDING({ commit }, params) {
+    commit("setSearchInfoAscending", params);
   }
 };
 
