@@ -1,10 +1,12 @@
 <template>
   <button
     type="button"
-    class="common-move-top on"
+    class="common-move-top"
+    :class="{ on: showMoveTop }"
     id="common-move-top"
     aria-label="scroll top button"
     title="scroll top button"
+    @click="moveTop"
   >
     ▲
   </button>
@@ -12,7 +14,32 @@
 
 <script>
 export default {
-  name: "common-move-top"
+  name: "common-move-top",
+  data() {
+    return {
+      showMoveTop: false
+    };
+  },
+  methods: {
+    initScrollAnimation() {
+      let position = window.scrollY;
+      if (position > 200) {
+        !this.showMoveTop ? (this.showMoveTop = true) : false;
+      } else {
+        this.showMoveTop ? (this.showMoveTop = false) : false;
+      }
+    },
+    moveTop() {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.initScrollAnimation);
+  }
 };
 </script>
 

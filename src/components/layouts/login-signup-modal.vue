@@ -37,6 +37,7 @@
                 class="btn-modal"
                 aria-label="close button in modal"
                 title="close button in modal"
+                @click="closeLoginModal"
               >
                 Cancel
               </button>
@@ -83,6 +84,7 @@
                 class="btn-modal"
                 aria-label="close button in modal"
                 title="close button in modal"
+                @click="closeLoginModal"
               >
                 Cancel
               </button>
@@ -157,7 +159,6 @@ $modules: "login-modal";
   z-index: 20;
   opacity: 1;
   transition: opacity 0.3s ease-out;
-
   &:before {
     width: 0;
     height: 100%;
@@ -168,7 +169,6 @@ $modules: "login-modal";
     content: "";
     font-size: 0;
   }
-
   &__content {
     display: inline-block;
     vertical-align: middle;
@@ -179,15 +179,12 @@ $modules: "login-modal";
     transition: all 0.3s ease-out;
     transform: translateY(0px);
   }
-
   &.hide {
     opacity: 0;
     overflow: hidden;
     height: 0;
     width: 0;
-    transition: opacity 0.3s ease-out;
   }
-
   &.hide .login-modal__content {
     transform: translateY(-30px);
   }
@@ -205,7 +202,6 @@ $modules: "template-login";
   padding: 4rem 0 0;
   position: relative;
   overflow: hidden;
-
   .btn-modal-close {
     font-size: 1.05rem;
     font-weight: 700;
@@ -219,42 +215,36 @@ $modules: "template-login";
     margin: 0.5rem;
     display: block;
   }
-
   &__content {
     width: 80%;
     margin: 0 auto;
     min-width: 200px;
   }
-
   &__title {
     font-size: 1rem;
     font-weight: bold;
     color: #343434;
     padding-bottom: 1rem;
   }
-
   &__subtitle {
     font-size: 0.813rem;
     color: #454545;
     padding-top: 0.78rem;
     padding-bottom: 0.4rem;
   }
-
   &__textfield {
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: hidden;
+    input {
+      border: 0;
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+      padding: 0.5rem 0.3rem;
+      outline: 0;
+    }
   }
-
-  &__textfield input {
-    border: 0;
-    width: 100%;
-    display: block;
-    margin: 0 auto;
-    padding: 0.5rem 0.3rem;
-    outline: 0;
-  }
-
   &__link-text {
     color: #fe708a;
     display: block;
@@ -263,35 +253,30 @@ $modules: "template-login";
     font-weight: bold;
     text-align: center;
   }
-
   &__button-container {
     padding: 2rem 0 1rem;
     text-align: right;
   }
-
   .btn-modal {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 60px;
+    &.bg_pink {
+      background-color: #fe708a;
+      color: #fff;
+      border-color: #fe708a;
+    }
   }
-
-  .btn-modal.bg_pink {
-    background-color: #fe708a;
-    color: #fff;
-    border-color: #fe708a;
-  }
-
   &__switch-template {
     text-align: center;
     padding: 0.78rem 0;
     background-color: #efefef;
-  }
-
-  &__switch-template p {
-    padding-top: 0.5rem;
-    color: #454545;
-    font-size: 0.813rem;
+    p {
+      padding-top: 0.5rem;
+      color: #454545;
+      font-size: 0.813rem;
+    }
   }
 }
 </style>
