@@ -2,53 +2,27 @@
   <section>
     <h3 class="_blind">Main banner slide</h3>
     <!-- main-banner-slide -->
-    <Swiper
-      class="main-banner-slide"
-      @slideChange="onSlideChange"
-      :options="swiperOptionsObject"
-    >
-      <SwiperSlide
-        class="main-banner-slide__item-container"
-        :style="{
-          backgroundImage: `url('_nuxt/src/assets/images/main_banner02.jpg')`
-        }"
-      >
-        <img
-          class="img_full"
-          src="~@/assets/images/main_banner02.jpg"
-          alt="메인 배너 슬라이드 배경 이미지"
-        />
+    <Swiper class="main-banner-slide" @slideChange="onSlideChange" :options="swiperOptionsObject">
+      <SwiperSlide class="main-banner-slide__item-container">
+        <img class="img_full" src="~@/assets/images/main_banner02.jpg" alt="메인 배너 슬라이드 배경 이미지" />
         <div class="main-banner-slide__item-text">
           <h3>The best place</h3>
           <p>MORE BEST<br />ITEM &amp; BRANDS</p>
           <span>
-            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam.
+            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
           </span>
           <router-link class="link-more-view" :to="'/products'">
             More View
           </router-link>
         </div>
       </SwiperSlide>
-      <SwiperSlide
-        class="main-banner-slide__item-container"
-        :style="{
-          backgroundImage: `url('_nuxt/src/assets/images/main_banner01.jpg')`
-        }"
-      >
-        <img
-          class="img_full"
-          src="~@/assets/images/main_banner01.jpg"
-          alt="메인 배너 슬라이드 배경 이미지"
-        />
+      <SwiperSlide class="main-banner-slide__item-container">
+        <img class="img_full" src="~@/assets/images/main_banner01.jpg" alt="메인 배너 슬라이드 배경 이미지" />
         <div class="main-banner-slide__item-text">
           <h3>The best place</h3>
           <p>MORE BEST<br />ITEM &amp; BRANDS</p>
           <span>
-            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco.
+            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
           </span>
           <router-link class="link-more-view" :to="'/products'">
             More View
@@ -60,10 +34,10 @@
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 
 export default {
-  name: "main-banner",
+  name: 'main-banner',
   components: {
     Swiper,
     SwiperSlide
@@ -79,22 +53,22 @@ export default {
           }
         }
       },
-      backgroundImageUrl: "~@/assets/images/main_banner02.jpg"
+      backgroundImageUrl: '~@/assets/images/main_banner02.jpg'
     };
   },
   methods: {
     onSlideChange(e) {
-      console.log("slide change", e);
+      console.log('slide change', e);
     }
   }
 };
 </script>
 
 <style lang="scss">
-@import "swiper/swiper.scss";
+@import 'swiper/swiper.scss';
 
 /* main-banner-slide */
-$modules: "main-banner-slide";
+$modules: 'main-banner-slide';
 .#{$modules} {
   width: 100%;
   overflow: hidden;
@@ -113,7 +87,7 @@ $modules: "main-banner-slide";
       left: 0;
       z-index: 0;
       background-color: rgba(255, 255, 255, 0.4);
-      content: "";
+      content: '';
     }
   }
 
@@ -152,15 +126,35 @@ $modules: "main-banner-slide";
   }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 480px) {
   .main-banner-slide__item-container {
     height: 240px;
     background-size: auto 100%;
     background-position: center center;
+    position: relative;
+    overflow: hidden;
     img {
-      opacity: 0;
+      position: absolute;
+      height: 100%;
+      width: auto;
+      right: calc(0% - 100px);
+      z-index: -1;
     }
   }
+  .main-banner-slide__item-text {
+    h3 {
+      font-size: 0.938rem;
+    }
+    p {
+      font-size: 1.6rem;
+    }
+    span {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 640px) {
   .main-banner-slide__item-text {
     h3 {
       font-size: 0.938rem;
