@@ -1,42 +1,42 @@
 const env = process.env.NODE_ENV;
 const envSetting = require(`./nuxt.env.${env}.js`);
-const metaTags = require("./nuxt.meta.js");
-const plugins = require("./nuxt.plugins.js");
-const webpack = require("webpack");
-const nodeExternals = require("webpack-node-externals");
-const src = "src";
+const metaTags = require('./nuxt.meta.js');
+const plugins = require('./nuxt.plugins.js');
+const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+const src = 'src';
 
 module.exports = {
-  srcDir: "src/",
+  srcDir: 'src/',
   router: {
-    base: "/",
-    linkActiveClass: "active-link",
+    base: '/',
+    linkActiveClass: 'active-link',
     extendRoutes(routes, resolve) {
       routes.push({
-        name: "pageNotFound",
-        path: "*",
-        component: resolve(__dirname, src + "/pages/notfound.vue")
+        name: 'pageNotFound',
+        path: '*',
+        component: resolve(__dirname, src + '/pages/notfound.vue')
       });
     }
   },
   env: envSetting,
-  loading: { color: "#000" },
+  loading: { color: '#000' },
   cache: true,
   head: metaTags,
   plugins: plugins,
-  modules: ["@nuxtjs/style-resources"],
-  styleResources: { scss: ["@assets/scss/preload.scss"] },
+  modules: ['@nuxtjs/style-resources'],
+  styleResources: { scss: ['@assets/scss/preload.scss'] },
   build: {
-    vendor: ["axios", "@nuxt/babel-preset-app", "babel-polyfill"],
+    vendor: ['axios', '@nuxt/babel-preset-app', 'babel-polyfill'],
     extractCss: true,
     babel: {
       presets({ isServer }) {
         return [
           [
-            "@nuxt/babel-preset-app",
+            '@nuxt/babel-preset-app',
             {
-              buildTarget: isServer ? "server" : "client",
-              targets: isServer ? { node: "current" } : { ie: 10 }
+              buildTarget: isServer ? 'server' : 'client',
+              targets: isServer ? { node: 'current' } : { ie: 10 }
             }
           ]
         ];
@@ -45,26 +45,26 @@ module.exports = {
         if (isDev) {
           return [];
         } else {
-          return ["transform-remove-console"];
+          return ['transform-remove-console'];
         }
       }
     },
     extend(config, { isDev, isClient, isServer }) {
-      config.devtool = "hidden-source-map";
+      config.devtool = 'hidden-source-map';
       if (isDev && isClient) {
         config.module.rules.push(
           {
-            enforce: "pre",
+            enforce: 'pre',
             test: /\.(js|vue)$/,
-            loader: "eslint-loader",
+            loader: 'eslint-loader',
             exclude: /(node_modules)/
           },
           {
             test: /\.js$/,
             use: {
-              loader: "babel-loader",
+              loader: 'babel-loader',
               options: {
-                plugins: ["@babel/plugin-syntax-dynamic-import"]
+                plugins: ['@babel/plugin-syntax-dynamic-import']
               }
             },
             exclude: /(node_modules)/
@@ -77,23 +77,21 @@ module.exports = {
     },
     plugins: [
       new webpack.ProvidePlugin({
-        _: "lodash",
-        Promise: "es6-promise"
+        _: 'lodash',
+        Promise: 'es6-promise'
       })
     ]
   },
-  serverMiddleware: [
-    { path: "/health/check", handler: "~/serverMiddleware/healthCheck.js" }
-  ],
+  // serverMiddleware: [{ path: '/health/check', handler: '~/serverMiddleware/healthCheck.js' }],
   pageTransition: {
-    name: "fade",
-    mode: "out-in"
+    name: 'fade',
+    mode: 'out-in'
     // beforeEnter(el) {
     //   console.log("### enter page before ###", el);
     // }
   },
   layoutTransition: {
-    name: "layout",
-    mode: "out-in"
+    name: 'layout',
+    mode: 'out-in'
   }
 };
