@@ -2,6 +2,7 @@
 
 > 매일마다 조금씩 개발하는 Web App Project 입니다.
 > 일반적인 기능들, 해보고 싶은 기능들 구현해보는 목적의 Project 입니다.
+> Vue, Vuex, Nuxt, Axios ++
 
 ## Build Setup
 
