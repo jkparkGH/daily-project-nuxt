@@ -2,8 +2,6 @@ module.exports = {
   title: 'BEAUTY HOUSE',
   meta: [
     { charset: 'utf-8' },
-    { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
-    { 'http-equiv': 'Content-Type', content: 'text/html; charset=utf-8' },
     { name: 'author', content: 'JAKE' },
     { name: 'keywords', content: 'Beauty House' },
     { hid: 'description', name: 'description', content: 'Beauty House' },
@@ -18,12 +16,12 @@ module.exports = {
     {
       hid: 'og:description',
       property: 'og:description',
-      content: 'description'
+      content: 'BEAUTY HOUSE Web page'
     },
     { hid: 'og:image', property: 'og:image', content: '/opengraph.png' },
     {
       name: 'viewport',
-      content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0'
+      content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
     },
     { name: 'theme-color', content: '#fe708a' }
   ],
