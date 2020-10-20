@@ -15,7 +15,7 @@ https://daily-beauty-house.netlify.app/
 
 1. Dependencies: `npm install --save-dev babel-jest jest jest-vue-preprocessor @vue/test-utils typescript`
 
-2. package.json
+2. package.json setting
 
 ```json
   "babel": {
@@ -53,3 +53,5 @@ https://daily-beauty-house.netlify.app/
     ]
   }
 ```
+
+3. `test-utils api Document` : https://vue-test-utils.vuejs.org/api/
