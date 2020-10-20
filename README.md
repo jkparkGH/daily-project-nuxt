@@ -10,3 +10,46 @@ https://daily-beauty-house.netlify.app/
 
 1. "vue-awesome-swiper"
    | https://swiperjs.com/api/#events && https://github.com/surmon-china/vue-awesome-swiper
+
+## Jest TEST MEMO
+
+1. Dependencies: `npm install --save-dev babel-jest jest jest-vue-preprocessor @vue/test-utils typescript`
+
+2. package.json
+
+```json
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    },
+    "moduleNameMapper": {
+      "^vue$": "vue/dist/vue.common.js",
+      "^~/(.*)$": "<rootDir>/$1"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/components/**/*.{js, vue}",
+      "**/server/utils/*.{js}",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "text-summary"
+    ]
+  }
+```

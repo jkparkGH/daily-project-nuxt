@@ -11,7 +11,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
@@ -24,13 +25,52 @@
     "nuxt": "^2.0.0",
     "sass-loader": "^9.0.2",
     "swiper": "^6.3.2",
+    "typescript": "^4.0.3",
     "vue-awesome-swiper": "^4.1.1"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.1.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^26.6.0",
     "eslint": "^4.19.1",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.1.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "jest": "^26.6.0",
+    "jest-vue-preprocessor": "^1.7.1"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    },
+    "moduleNameMapper": {
+      "^vue$": "vue/dist/vue.common.js",
+      "^~/(.*)$": "<rootDir>/$1"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/components/**/*.{js, vue}",
+      "**/server/utils/*.{js}",
+      "!**/node_modules/**"
+    ],
+    "coverageReporters": [
+      "text-summary"
+    ]
   }
 }
