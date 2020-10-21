@@ -54,4 +54,6 @@ https://daily-beauty-house.netlify.app/
   }
 ```
 
-3. `test-utils api Document` : https://vue-test-utils.vuejs.org/api/
+3. `test-utils api Document`: https://vue-test-utils.vuejs.org/api/
+
+4. `뷰 유닛테스트 공식 document`: https://kr.vuejs.org/v2/guide/unit-testing.html
