@@ -1,38 +1,38 @@
-import axiosModule from "@/assets/js/axiosModule";
+import axiosModule from '@/assets/js/axiosModule';
 // dummy
-import dummyData from "@/store/data/dummy.js";
+import dummyData from '@/store/data/dummy.js';
 
 const state = () => ({
   products: [
     {
       uid: null,
-      name: "",
-      gender: "",
+      name: '',
+      gender: '',
       new: false,
       sale: false,
       beforePrice: 0,
       crrPrice: 0,
-      images: ""
+      images: ''
     }
   ],
   productDetailData: {
     uid: null,
-    name: "",
-    gender: "",
+    name: '',
+    gender: '',
     new: false,
     sale: false,
     beforePrice: 0,
     crrPrice: 0,
-    images: "",
-    summary: "",
+    images: '',
+    summary: '',
     infoList: {
-      info: "",
-      reviews: "",
-      shipping: ""
+      info: '',
+      reviews: '',
+      shipping: ''
     }
   },
   searchInfo: {
-    searchText: "",
+    searchText: '',
     ascending: {
       cost: null,
       name: null
@@ -56,28 +56,28 @@ const mutations = {
   setStateProducts(state, productsList = []) {
     if (Array.isArray(productsList)) {
       state.products = productsList;
-      console.log("## setStateProducts ##", state.products);
+      console.log('## setStateProducts ##', state.products);
     }
   },
   setStateProductDetail(state, detailData = {}) {
     state.productDetailData = { ...detailData };
-    console.log("## setStateProductDetail ##", state.productDetailData);
+    console.log('## setStateProductDetail ##', state.productDetailData);
   },
   addProductDetailData(state, crrUid) {
     // dummy Data
     let result = dummyData.dummyList.find(el => el.uid === parseInt(crrUid));
     state.productDetailData = { ...state.productDetailData, ...result };
-    console.log("## addProductDetailData ##", state.productDetailData);
+    console.log('## addProductDetailData ##', state.productDetailData);
   },
   setSearchInfoText(state, crrSearchInfoText) {
     state.searchInfo.searchText = crrSearchInfoText;
-    console.log("##state.setSearchInfoText##", state.searchInfo.searchText);
+    console.log('##state.setSearchInfoText##', state.searchInfo.searchText);
   },
   setSearchInfoAscending(state, crrSearchInfoAscending) {
     console.log(crrSearchInfoAscending);
     let result = { ...state.searchInfo.ascending, ...crrSearchInfoAscending };
     state.searchInfo.ascending = result;
-    console.log("##state.searchInfo.ascending##", state.searchInfo.ascending);
+    console.log('##state.searchInfo.ascending##', state.searchInfo.ascending);
   }
 };
 const actions = {
@@ -86,19 +86,16 @@ const actions = {
       if (!state.getProductsProcessing) {
         state.getProductsProcessing = true;
         axiosModule.get({
-          url: "/products",
+          url: '/products',
           reqData: {
-            uuid: "test"
+            uuid: 'test'
           },
           responseHandler: response => {
-            commit("setStateProducts", response.products);
-            resolve();
+            commit('setStateProducts', response.products);
           },
           errorHandler: reject,
           callback: () => {
-            console.log("# callback #");
-            commit("setStateProducts", dummyData.dummyList);
-            resolve();
+            commit('setStateProducts', dummyData.dummyList);
             state.getProductsProcessing = false;
           }
         });
@@ -112,14 +109,13 @@ const actions = {
         axiosModule.get({
           url: `/product-detail/${params.uid}`,
           responseHandler: response => {
-            commit("setStateProductDetail", response.products);
+            commit('setStateProductDetail', response.products);
             resolve();
           },
           errorHandler: reject,
           callback: () => {
-            commit("setStateProductDetail", dummyData.dummyDetails);
-            commit("addProductDetailData", params.uid);
-            resolve();
+            commit('setStateProductDetail', dummyData.dummyDetails);
+            commit('addProductDetailData', params.uid);
             state.getProductDetailsProcessing = false;
           }
         });
@@ -127,10 +123,10 @@ const actions = {
     });
   },
   SET_SEARCH_INFO_TEXT({ commit }, params) {
-    commit("setSearchInfoText", params);
+    commit('setSearchInfoText', params);
   },
   SET_SEARCH_INFO_ASCENDING({ commit }, params) {
-    commit("setSearchInfoAscending", params);
+    commit('setSearchInfoAscending', params);
   }
 };
 

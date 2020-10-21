@@ -10,10 +10,7 @@
     <div class="product-details">
       <div class="product-details__container">
         <div class="product-details__image">
-          <img
-            :src="'/temp/products/' + productDetailData.images"
-            :alt="`product ${productDetailData.uid}`"
-          />
+          <img :src="'/temp/products/' + productDetailData.images" :alt="`product ${productDetailData.uid}`" />
         </div>
       </div>
       <div class="product-details__container">
@@ -21,17 +18,10 @@
           {{ productDetailData.name }}
         </h4>
         <p class="product-details__price">
-          <span class="_price-before"
-            >￦{{ productDetailData.beforePrice | toCurrency }}</span
-          >
-          <span class="_price-current"
-            >￦{{ productDetailData.crrPrice | toCurrency }}</span
-          >
+          <span class="_price-before">￦{{ productDetailData.beforePrice | toCurrency }}</span>
+          <span class="_price-current">￦{{ productDetailData.crrPrice | toCurrency }}</span>
         </p>
-        <p
-          class="product-details__info-summary"
-          :html="productDetailData.summary"
-        ></p>
+        <p class="product-details__info-summary" :html="productDetailData.summary"></p>
         <div class="product-details__purchase-amount-select">
           <select name="" id="cust_purchase_count">
             <option value="1">1</option>
@@ -63,29 +53,37 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 export default {
-  name: "product-details-index",
+  name: 'product-details-index',
   computed: {
     ...mapGetters({
-      productDetailData: "products/productDetailData"
+      productDetailData: 'products/productDetailData'
     })
   },
   methods: {
     ...mapActions({
-      GET_PRODUCT_DETAIL: "products/GET_PRODUCT_DETAIL"
+      GET_PRODUCT_DETAIL: 'products/GET_PRODUCT_DETAIL',
+      ADD_TODAYS_VIEW_LIST: 'todaysview/ADD_TODAYS_VIEW_LIST'
     })
   },
   mounted() {
     this.GET_PRODUCT_DETAIL({
       uid: this.$route.params.uid
-    });
+    })
+      .then(() => {
+        console.log('# ADD_TODAYS_VIEW_LIST #');
+      })
+      .catch(() => {})
+      .finally(() => {
+        this.ADD_TODAYS_VIEW_LIST(this.productDetailData);
+      });
   }
 };
 </script>
 
 <style lang="scss">
-$modules: "category-tag";
+$modules: 'category-tag';
 .#{$modules} {
   width: 100%;
   padding: 0.5rem 1rem;
@@ -106,7 +104,7 @@ $modules: "category-tag";
   }
 }
 
-$modules: "product-details";
+$modules: 'product-details';
 .#{$modules} {
   background-color: #fff;
   width: 100%;

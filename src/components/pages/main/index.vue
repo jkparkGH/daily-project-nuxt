@@ -28,15 +28,15 @@
 </template>
 
 <script>
-import ContentTitle from "@/components/common/content-title";
-import MainBanner from "@/components/pages/main/main-banner";
-import ProudctList from "@/components/pages/products/products-list";
-import MainFeaturedCategory from "@/components/pages/main/main-featured-category";
-import MainMagazineNews from "@/components/pages/main/main-magazine-news";
-import MainCoperationList from "@/components/pages/main/main-coperation-list";
-import MainSlogan from "@/components/pages/main/main-slogan";
+import ContentTitle from '@/components/common/content-title';
+import MainBanner from '@/components/pages/main/main-banner';
+import ProudctList from '@/components/pages/products/products-list';
+import MainFeaturedCategory from '@/components/pages/main/main-featured-category';
+import MainMagazineNews from '@/components/pages/main/main-magazine-news';
+import MainCoperationList from '@/components/pages/main/main-coperation-list';
+import MainSlogan from '@/components/pages/main/main-slogan';
 export default {
-  name: "main-index",
+  name: 'main-index',
   components: {
     ContentTitle,
     MainBanner,
@@ -45,6 +45,7 @@ export default {
     MainMagazineNews,
     MainCoperationList,
     MainSlogan
-  }
+  },
+  mounted() {}
 };
 </script>

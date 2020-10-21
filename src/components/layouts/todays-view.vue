@@ -1,24 +1,27 @@
 <template>
-  <div>
-    <aside class="todays-view">
-      <span>today-views</span>
-      <ul>
-        <!-- <li v-for="(item, $index) in []" :key="'todays-view-list' + $index"> -->
-        <li>
-          <router-link>
-            <img src="'_nuxt/src/assets/images/main_banner02.jpg'" />
-          </router-link>
-        </li>
-      </ul>
-    </aside>
+  <div class="todays-view" v-show="todaysViewList.length > 0">
+    <span>today-views</span>
+    <ul>
+      <li v-for="(item, $index) in todaysViewList" :key="'todays-view-list' + $index">
+        <router-link :to="'/products/' + item.uid">
+          <img :src="'/temp/products/' + item.images" />
+        </router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: 'todays-view',
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters({
+      todaysViewList: 'todaysview/todaysViewList'
+    })
   }
 };
 </script>
@@ -27,18 +30,22 @@ export default {
 $modules: 'todays-view';
 .#{$modules} {
   position: fixed;
+  z-index: 1;
   top: 36%;
   right: 5px;
   background-color: #e1e1e1;
-  width: 60px;
+  width: 62px;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #e1e1e1;
   padding: 3px;
   text-align: center;
-  font-size: 0.6rem;
-  font-weight: bold;
   opacity: 0.5;
+  & > span {
+    font-size: 0.4rem;
+    left: -0.5px;
+    font-weight: bold;
+  }
   &:hover {
     opacity: 1;
   }

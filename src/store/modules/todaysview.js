@@ -1,17 +1,23 @@
 const state = () => ({
   todaysViewList: []
-})
+});
 const getters = {
   todaysViewList: state => {
-    return state.todaysViewList
+    return state.todaysViewList;
   }
-}
+};
 const mutations = {
-  setTodaysViewList (state, viewList) {
-    todaysViewList = [ ...viewList ]
+  setTodaysViewList(state, todaysView) {
+    if (!state.todaysViewList.some(data => data.uid === todaysView.uid)) {
+      state.todaysViewList.push(todaysView);
+    }
   }
-}
-const actions = {}
+};
+const actions = {
+  ADD_TODAYS_VIEW_LIST({ commit }, todaysView) {
+    commit('setTodaysViewList', todaysView);
+  }
+};
 
 export default {
   namespaced: true,
@@ -19,4 +25,4 @@ export default {
   getters,
   mutations,
   actions
-}
+};
