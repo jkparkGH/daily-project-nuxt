@@ -23,6 +23,9 @@ export default {
     CommonMoveTop,
     LoginSignUpModal,
     TodaysView
+  },
+  mounted() {
+    this.$store.dispatch('todaysview/INIT_TODAYS_VIEW_LIST', this);
   }
 };
 </script>
