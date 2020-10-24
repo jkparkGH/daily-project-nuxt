@@ -20,7 +20,7 @@ const mutations = {
     }
   },
   setTodaysViewListCookie(state, { vm }) {
-    vm.$cookies.set('beautyHouseTodaysView', JSON.stringify(state.todaysViewList), 1);
+    vm.$cookies.set('beautyHouseTodaysView', JSON.stringify(state.todaysViewList), 1, '/', `${document.domain}`);
   }
 };
 const actions = {
