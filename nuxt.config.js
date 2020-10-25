@@ -1,3 +1,5 @@
+import dummyData from '@/store/data/dummy.js';
+
 const env = process.env.NODE_ENV;
 const envSetting = require(`./nuxt.env.${env}.js`);
 const metaTags = require('./nuxt.meta.js');
@@ -50,7 +52,11 @@ module.exports = {
       }
     },
     generate: {
-      fallback: true
+      routes: function() {
+        return dummyData.dummyList.map(product => {
+          return '/products/', product.uid;
+        });
+      }
     },
     extend(config, { isDev, isClient, isServer }) {
       config.devtool = 'hidden-source-map';
