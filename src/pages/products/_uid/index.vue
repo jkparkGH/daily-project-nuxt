@@ -1,15 +1,9 @@
 <template>
-  <section>
-    <ProductDetailsComponents />
-  </section>
+  <section></section>
 </template>
 
 <script>
-import ProductDetailsComponents from "@/components/pages/product-details";
 export default {
-  name: "products-details",
-  components: {
-    ProductDetailsComponents
-  }
+  name: 'products-details'
 };
 </script>

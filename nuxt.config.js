@@ -28,6 +28,13 @@ module.exports = {
   plugins: plugins,
   modules: ['@nuxtjs/style-resources'],
   styleResources: { scss: ['@assets/scss/preload.scss'] },
+  generate: {
+    async routes() {
+      return dummyData.dummyList.map(product => {
+        return `/products/${product.uid}`;
+      });
+    }
+  },
   build: {
     vendor: ['axios', '@nuxt/babel-preset-app', 'babel-polyfill'],
     extractCss: true,
@@ -49,13 +56,6 @@ module.exports = {
         } else {
           return ['transform-remove-console'];
         }
-      }
-    },
-    generate: {
-      routes: function() {
-        return dummyData.dummyList.map(product => {
-          return '/products/', product.uid;
-        });
       }
     },
     extend(config, { isDev, isClient, isServer }) {
