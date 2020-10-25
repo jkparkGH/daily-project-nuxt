@@ -49,6 +49,9 @@ module.exports = {
         }
       }
     },
+    generate: {
+      fallback: true
+    },
     extend(config, { isDev, isClient, isServer }) {
       config.devtool = 'hidden-source-map';
       if (isDev && isClient) {
