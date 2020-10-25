@@ -9,9 +9,10 @@ const getters = {
 };
 const mutations = {
   initTodaysViewList(state, vm) {
-    if (!state.initTodaysViewList && vm.$cookies.isKey('beautyHouseTodaysView')) {
+    if (!state.initTodaysViewList && typeof localStorage !== 'undefined' && localStorage.getItem('beautyHouseTodaysView')) {
       state.initTodaysViewList = true;
-      state.todaysViewList = [...vm.$cookies.get('beautyHouseTodaysView')];
+      state.todaysViewList = [...JSON.parse(localStorage.getItem('beautyHouseTodaysView'))];
+      console.log('## initTodaysViewList.todaysViewList ##', state.todaysViewList);
     }
   },
   setTodaysViewList(state, todaysView) {
@@ -19,8 +20,11 @@ const mutations = {
       state.todaysViewList.push({ uid: todaysView.uid, images: todaysView.images });
     }
   },
-  setTodaysViewListCookie(state, { vm }) {
-    vm.$cookies.set('beautyHouseTodaysView', JSON.stringify(state.todaysViewList), 1, '/', `${document.domain}`);
+  setTodaysViewListStorage(state, { vm }) {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('beautyHouseTodaysView', JSON.stringify(state.todaysViewList));
+    }
+    vm.$cookies.set('testCookies', 'default');
   }
 };
 const actions = {
@@ -30,8 +34,8 @@ const actions = {
   ADD_TODAYS_VIEW_LIST({ commit }, todaysView) {
     commit('setTodaysViewList', todaysView);
   },
-  ADD_TODAYS_VIEW_LIST_COOKIE({ commit }, data) {
-    commit('setTodaysViewListCookie', data);
+  ADD_TODAYS_VIEW_LIST_STORAGE({ commit }, data) {
+    commit('setTodaysViewListStorage', data);
   }
 };
 

@@ -65,7 +65,7 @@ export default {
     ...mapActions({
       GET_PRODUCT_DETAIL: 'products/GET_PRODUCT_DETAIL',
       ADD_TODAYS_VIEW_LIST: 'todaysview/ADD_TODAYS_VIEW_LIST',
-      ADD_TODAYS_VIEW_LIST_COOKIE: 'todaysview/ADD_TODAYS_VIEW_LIST_COOKIE'
+      ADD_TODAYS_VIEW_LIST_STORAGE: 'todaysview/ADD_TODAYS_VIEW_LIST_STORAGE'
     })
   },
   mounted() {
@@ -78,7 +78,7 @@ export default {
       .catch(() => {})
       .finally(() => {
         this.ADD_TODAYS_VIEW_LIST(this.productDetailData);
-        this.ADD_TODAYS_VIEW_LIST_COOKIE({
+        this.ADD_TODAYS_VIEW_LIST_STORAGE({
           vm: this,
           uid: this.productDetailData.uid
         });
