@@ -1,4 +1,4 @@
-import dummyData from '@/store/data/dummy.js';
+import dummyData from './src/store/data/dummy.js';
 
 const env = process.env.NODE_ENV;
 const envSetting = require(`./nuxt.env.${env}.js`);
