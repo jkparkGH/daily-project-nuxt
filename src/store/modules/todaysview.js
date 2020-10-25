@@ -13,6 +13,7 @@ const mutations = {
       state.initTodaysViewList = true;
       state.todaysViewList = [...JSON.parse(localStorage.getItem('beautyHouseTodaysView'))];
       console.log('## initTodaysViewList.todaysViewList ##', state.todaysViewList);
+      console.log('# cookies test #', vm.$cookies.get('beautyHouseTodaysView'));
     }
   },
   setTodaysViewList(state, todaysView) {
@@ -24,7 +25,7 @@ const mutations = {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('beautyHouseTodaysView', JSON.stringify(state.todaysViewList));
     }
-    vm.$cookies.set('testCookies', 'default');
+    vm.$cookies.set('beautyHouseTodaysView', JSON.stringify(state.todaysViewList));
   }
 };
 const actions = {
