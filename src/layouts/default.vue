@@ -29,3 +29,7 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+/* Empty tag && need this remark :: Don't remove */
+</style>

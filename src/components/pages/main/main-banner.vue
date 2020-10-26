@@ -35,13 +35,13 @@ export default {
         {
           title: 'The best place',
           subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
-          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam First.',
           images: 'temp/main_banner02.jpg'
         },
         {
           title: 'The best place',
           subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
-          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Second.',
           images: 'temp/main_banner01.jpg'
         }
       ],
@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $modules: 'main-banner-slide';
 .#{$modules} {
   width: 100%;

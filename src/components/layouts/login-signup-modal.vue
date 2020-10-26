@@ -174,6 +174,7 @@ $modules: 'template-login';
     right: 0;
     margin: 0.5rem;
     display: block;
+    transform: scaleY(0.84);
   }
   &__content {
     width: 80%;

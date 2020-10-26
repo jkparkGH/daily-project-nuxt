@@ -10,3 +10,6 @@ package-lock.json
 
 # Nuxt generate
 dist
+
+# Private
+private_memo

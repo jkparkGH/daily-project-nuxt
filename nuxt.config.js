@@ -28,7 +28,7 @@ module.exports = {
   head: metaTags,
   plugins: plugins,
   modules: ['@nuxtjs/style-resources'],
-  styleResources: { scss: ['@assets/scss/preload.scss'] },
+  styleResources: { scss: ['@/assets/scss/preload.scss'] },
   generate: {
     async routes() {
       return dummyData.dummyList.map(product => {
