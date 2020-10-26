@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import CommonHeader from '@/components/layouts/common-header';
 import CommonFooter from '@/components/layouts/common-footer';
 import CommonMoveTop from '@/components/layouts/common-move-top';
@@ -24,8 +25,13 @@ export default {
     LoginSignUpModal,
     TodaysView
   },
+  methods: {
+    ...mapActions({
+      INIT_TODAYS_VIEW_LIST: 'todaysview/INIT_TODAYS_VIEW_LIST'
+    })
+  },
   mounted() {
-    this.$store.dispatch('todaysview/INIT_TODAYS_VIEW_LIST', this);
+    this.INIT_TODAYS_VIEW_LIST(this);
   }
 };
 </script>

@@ -4,71 +4,12 @@
     <div class="login-modal__content">
       <div class="template-login">
         <button type="button" class="btn-modal-close" aria-label="close button in modal" title="close button in modal" @click="closeLoginModal">
-          X
+          ✕
         </button>
         <!-- type: login -->
-        <form v-if="typeLoginModal === 'login'">
-          <div class="template-login__content">
-            <h4 class="template-login__title">Login</h4>
-            <h5 class="template-login__subtitle">Email</h5>
-            <div class="template-login__textfield">
-              <input type="text" />
-            </div>
-            <h5 class="template-login__subtitle">Password</h5>
-            <div class="template-login__textfield">
-              <input type="password" />
-            </div>
-            <button type="button" class="template-login__link-text" @click="toggleLoginModal">
-              Forget your password?
-            </button>
-            <div class="template-login__button-container">
-              <button type="button" class="btn-modal" aria-label="close button in modal" title="close button in modal" @click="closeLoginModal">
-                Cancel
-              </button>
-              <button type="button" class="btn-modal bg_pink" aria-label="confirm button in modal" title="confirm button in modal">
-                OK
-              </button>
-            </div>
-          </div>
-          <div class="template-login__switch-template">
-            <p>Have not joined yet?</p>
-            <button type="button" class="template-login__link-text" @click="toggleLoginModal">
-              Sign up
-            </button>
-          </div>
-        </form>
+        <LoginModal :toggleLoginModal="toggleLoginModal" :closeLoginModal="closeLoginModal" v-if="typeLoginModal === 'login'" />
         <!-- type: sign up -->
-        <form v-else>
-          <div class="template-login__content">
-            <h4 class="template-login__title">Sign up</h4>
-            <h5 class="template-login__subtitle">Email</h5>
-            <div class="template-login__textfield">
-              <input type="text" />
-            </div>
-            <h5 class="template-login__subtitle">Password</h5>
-            <div class="template-login__textfield">
-              <input type="password" />
-            </div>
-            <h5 class="template-login__subtitle">Confirm Password</h5>
-            <div class="template-login__textfield">
-              <input type="password" />
-            </div>
-            <div class="template-login__button-container">
-              <button type="button" class="btn-modal" aria-label="close button in modal" title="close button in modal" @click="closeLoginModal">
-                Cancel
-              </button>
-              <button type="button" class="btn-modal bg_pink" aria-label="confirm button in modal" title="confirm button in modal">
-                OK
-              </button>
-            </div>
-          </div>
-          <div class="template-login__switch-template">
-            <p>Already signed up?</p>
-            <button type="button" class="template-login__link-text" @click="toggleLoginModal">
-              Login
-            </button>
-          </div>
-        </form>
+        <SignupModal :toggleLoginModal="toggleLoginModal" :closeLoginModal="closeLoginModal" v-else />
       </div>
     </div>
   </div>
@@ -76,8 +17,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import LoginModal from '@/components/common/login-modal';
+import SignupModal from '@/components/common/signup-modal';
 export default {
   name: 'login-signup-modal',
+  components: {
+    LoginModal,
+    SignupModal
+  },
   computed: {
     ...mapGetters({
       showLoginModal: 'uiInteraction/showLoginModal',
@@ -93,7 +40,6 @@ export default {
       this.TOGGLE_LOGIN_MODAL(false);
     },
     toggleLoginModal() {
-      console.log(this.typeLoginModal);
       if (this.typeLoginModal === 'login') {
         this.CHANGE_STATE_LOGIN_MODAL('singup');
       } else {
@@ -152,7 +98,7 @@ $modules: 'login-modal';
 
 /* modal : Login */
 $modules: 'template-login';
-.#{$modules} {
+/deep/ .#{$modules} {
   max-width: 400px;
   width: 80%;
   margin: 0 auto;
@@ -174,7 +120,7 @@ $modules: 'template-login';
     right: 0;
     margin: 0.5rem;
     display: block;
-    transform: scaleY(0.84);
+    // transform: scaleY(0.84);
   }
   &__content {
     width: 80%;
@@ -238,6 +184,11 @@ $modules: 'template-login';
       color: #454545;
       font-size: 0.813rem;
     }
+  }
+  .error-message {
+    font-size: 11px;
+    color: #ff5656d9;
+    padding-top: 4px;
   }
 }
 </style>
