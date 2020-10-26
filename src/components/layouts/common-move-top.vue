@@ -1,20 +1,12 @@
 <template>
-  <button
-    type="button"
-    class="common-move-top"
-    :class="{ on: showMoveTop }"
-    id="common-move-top"
-    aria-label="scroll top button"
-    title="scroll top button"
-    @click="moveTop"
-  >
+  <button type="button" class="common-move-top" :class="{ on: showMoveTop }" id="common-move-top" aria-label="scroll top button" title="scroll top button" @click="moveTop">
     ▲
   </button>
 </template>
 
 <script>
 export default {
-  name: "common-move-top",
+  name: 'common-move-top',
   data() {
     return {
       showMoveTop: false
@@ -33,19 +25,19 @@ export default {
       window.scroll({
         top: 0,
         left: 0,
-        behavior: "smooth"
+        behavior: 'smooth'
       });
     }
   },
   mounted() {
-    window.addEventListener("scroll", this.initScrollAnimation);
+    window.addEventListener('scroll', this.initScrollAnimation);
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /* scroll top button */
-$modules: "common-move-top";
+$modules: 'common-move-top';
 .#{$modules} {
   position: fixed;
   bottom: 1.5rem;

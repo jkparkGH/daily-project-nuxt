@@ -6,15 +6,15 @@
 
 <script>
 export default {
-  name: "content-title",
+  name: 'content-title',
   props: {
     info: {
-      title: "",
-      text: "",
+      title: '',
+      text: '',
       default() {
         return {
-          title: "-",
-          text: "-"
+          title: '-',
+          text: '-'
         };
       }
     }
@@ -22,8 +22,9 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.content-title {
+<style lang="scss" scoped>
+$modules: 'content-title';
+.#{$modules} {
   position: relative;
   text-align: center;
   padding: 2rem;
@@ -33,7 +34,7 @@ export default {
   &:before {
     position: absolute;
     background-color: #fe708a;
-    content: "";
+    content: '';
     top: 10px;
     left: 50%;
     width: 40px;

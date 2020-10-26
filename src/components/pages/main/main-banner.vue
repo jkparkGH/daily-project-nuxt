@@ -3,26 +3,13 @@
     <h3 class="_blind">Main banner slide</h3>
     <!-- main-banner-slide -->
     <Swiper class="main-banner-slide" @slideChange="onSlideChange" :options="swiperOptionsObject">
-      <SwiperSlide class="main-banner-slide__item-container">
-        <img class="img_full" src="~@/assets/images/main_banner02.jpg" alt="메인 배너 슬라이드 배경 이미지" />
+      <SwiperSlide class="main-banner-slide__item-container" v-for="(item, index) in dummySlide" :key="'dummyslide' + index">
+        <img class="img_full" :src="item.images" alt="메인 배너 슬라이드 배경 이미지" />
         <div class="main-banner-slide__item-text">
-          <h3>The best place</h3>
-          <p>MORE BEST<br />ITEM &amp; BRANDS</p>
+          <h3>{{ item.title }}</h3>
+          <p v-html="item.subtitle"></p>
           <span>
-            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-          </span>
-          <router-link class="link-more-view" :to="'/products'">
-            More View
-          </router-link>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide class="main-banner-slide__item-container">
-        <img class="img_full" src="~@/assets/images/main_banner01.jpg" alt="메인 배너 슬라이드 배경 이미지" />
-        <div class="main-banner-slide__item-text">
-          <h3>The best place</h3>
-          <p>MORE BEST<br />ITEM &amp; BRANDS</p>
-          <span>
-            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+            {{ item.content }}
           </span>
           <router-link class="link-more-view" :to="'/products'">
             More View
@@ -44,6 +31,20 @@ export default {
   },
   data() {
     return {
+      dummySlide: [
+        {
+          title: 'The best place',
+          subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
+          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+          images: 'temp/main_banner02.jpg'
+        },
+        {
+          title: 'The best place',
+          subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
+          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+          images: 'temp/main_banner01.jpg'
+        }
+      ],
       swiperOptionsObject: {
         loop: true,
         breakpoints: {
@@ -52,8 +53,7 @@ export default {
             spaceBetween: 0
           }
         }
-      },
-      backgroundImageUrl: '~@/assets/images/main_banner02.jpg'
+      }
     };
   },
   methods: {
@@ -65,9 +65,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'swiper/swiper.scss';
-
-/* main-banner-slide */
 $modules: 'main-banner-slide';
 .#{$modules} {
   width: 100%;

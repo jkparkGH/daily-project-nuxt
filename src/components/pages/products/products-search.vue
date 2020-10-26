@@ -2,37 +2,19 @@
   <!-- products-search -->
   <div class="products-search">
     <div class="products-search__textfield">
-      <input
-        type="text"
-        placeholder="Search Product Name"
-        v-model="searchText"
-      />
+      <input type="text" placeholder="Search Product Name" v-model="searchText" />
     </div>
     <ul class="products-search__sort">
       <li>
         <span>Cost</span>
-        <button
-          type="button"
-          title="sort button"
-          :aria-label="
-            `sort ${ascending.cost ? 'ascending' : 'descending'} button`
-          "
-          @click="ascendingTypeReverse('cost')"
-        >
-          {{ ascending.cost ? "▲" : "▼" }}
+        <button type="button" title="sort button" :aria-label="`sort ${ascending.cost ? 'ascending' : 'descending'} button`" @click="ascendingTypeReverse('cost')">
+          {{ ascending.cost ? '▲' : '▼' }}
         </button>
       </li>
       <li>
         <span>Name</span>
-        <button
-          type="button"
-          title="sort button"
-          :aria-label="
-            `sort ${ascending.name ? 'ascending' : 'descending'} button`
-          "
-          @click="ascendingTypeReverse('name')"
-        >
-          {{ ascending.name ? "▲" : "▼" }}
+        <button type="button" title="sort button" :aria-label="`sort ${ascending.name ? 'ascending' : 'descending'} button`" @click="ascendingTypeReverse('name')">
+          {{ ascending.name ? '▲' : '▼' }}
         </button>
       </li>
     </ul>
@@ -40,12 +22,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 export default {
-  name: "product-search",
+  name: 'product-search',
   computed: {
     ...mapGetters({
-      searchInfo: "products/searchInfo"
+      searchInfo: 'products/searchInfo'
     }),
     searchText: {
       get: function() {
@@ -61,8 +43,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      SET_SEARCH_INFO_TEXT: "products/SET_SEARCH_INFO_TEXT",
-      SET_SEARCH_INFO_ASCENDING: "products/SET_SEARCH_INFO_ASCENDING"
+      SET_SEARCH_INFO_TEXT: 'products/SET_SEARCH_INFO_TEXT',
+      SET_SEARCH_INFO_ASCENDING: 'products/SET_SEARCH_INFO_ASCENDING'
     }),
     searchTextChange() {},
     ascendingTypeReverse(typeString) {
@@ -74,9 +56,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-/* Product List : search bar & list */
-$modules: "products-search";
+<style lang="scss" scoped>
+$modules: 'products-search';
 .#{$modules} {
   width: 80%;
   max-width: 1080px;
@@ -112,7 +93,7 @@ $modules: "products-search";
     width: auto;
     margin: 0 0.5rem;
     &:after {
-      content: "";
+      content: '';
       display: table;
       clear: both;
     }

@@ -3,13 +3,7 @@
   <div class="login-modal" v-show="true" :class="{ hide: !showLoginModal }">
     <div class="login-modal__content">
       <div class="template-login">
-        <button
-          type="button"
-          class="btn-modal-close"
-          aria-label="close button in modal"
-          title="close button in modal"
-          @click="closeLoginModal"
-        >
+        <button type="button" class="btn-modal-close" aria-label="close button in modal" title="close button in modal" @click="closeLoginModal">
           X
         </button>
         <!-- type: login -->
@@ -24,40 +18,21 @@
             <div class="template-login__textfield">
               <input type="password" />
             </div>
-            <button
-              type="button"
-              class="template-login__link-text"
-              @click="toggleLoginModal"
-            >
+            <button type="button" class="template-login__link-text" @click="toggleLoginModal">
               Forget your password?
             </button>
             <div class="template-login__button-container">
-              <button
-                type="button"
-                class="btn-modal"
-                aria-label="close button in modal"
-                title="close button in modal"
-                @click="closeLoginModal"
-              >
+              <button type="button" class="btn-modal" aria-label="close button in modal" title="close button in modal" @click="closeLoginModal">
                 Cancel
               </button>
-              <button
-                type="button"
-                class="btn-modal bg_pink"
-                aria-label="confirm button in modal"
-                title="confirm button in modal"
-              >
+              <button type="button" class="btn-modal bg_pink" aria-label="confirm button in modal" title="confirm button in modal">
                 OK
               </button>
             </div>
           </div>
           <div class="template-login__switch-template">
             <p>Have not joined yet?</p>
-            <button
-              type="button"
-              class="template-login__link-text"
-              @click="toggleLoginModal"
-            >
+            <button type="button" class="template-login__link-text" @click="toggleLoginModal">
               Sign up
             </button>
           </div>
@@ -79,32 +54,17 @@
               <input type="password" />
             </div>
             <div class="template-login__button-container">
-              <button
-                type="button"
-                class="btn-modal"
-                aria-label="close button in modal"
-                title="close button in modal"
-                @click="closeLoginModal"
-              >
+              <button type="button" class="btn-modal" aria-label="close button in modal" title="close button in modal" @click="closeLoginModal">
                 Cancel
               </button>
-              <button
-                type="button"
-                class="btn-modal bg_pink"
-                aria-label="confirm button in modal"
-                title="confirm button in modal"
-              >
+              <button type="button" class="btn-modal bg_pink" aria-label="confirm button in modal" title="confirm button in modal">
                 OK
               </button>
             </div>
           </div>
           <div class="template-login__switch-template">
             <p>Already signed up?</p>
-            <button
-              type="button"
-              class="template-login__link-text"
-              @click="toggleLoginModal"
-            >
+            <button type="button" class="template-login__link-text" @click="toggleLoginModal">
               Login
             </button>
           </div>
@@ -115,37 +75,37 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 export default {
-  name: "login-signup-modal",
+  name: 'login-signup-modal',
   computed: {
     ...mapGetters({
-      showLoginModal: "uiInteraction/showLoginModal",
-      typeLoginModal: "uiInteraction/typeLoginModal"
+      showLoginModal: 'uiInteraction/showLoginModal',
+      typeLoginModal: 'uiInteraction/typeLoginModal'
     })
   },
   methods: {
     ...mapActions({
-      TOGGLE_LOGIN_MODAL: "uiInteraction/TOGGLE_LOGIN_MODAL",
-      CHANGE_STATE_LOGIN_MODAL: "uiInteraction/CHANGE_STATE_LOGIN_MODAL"
+      TOGGLE_LOGIN_MODAL: 'uiInteraction/TOGGLE_LOGIN_MODAL',
+      CHANGE_STATE_LOGIN_MODAL: 'uiInteraction/CHANGE_STATE_LOGIN_MODAL'
     }),
     closeLoginModal() {
       this.TOGGLE_LOGIN_MODAL(false);
     },
     toggleLoginModal() {
       console.log(this.typeLoginModal);
-      if (this.typeLoginModal === "login") {
-        this.CHANGE_STATE_LOGIN_MODAL("singup");
+      if (this.typeLoginModal === 'login') {
+        this.CHANGE_STATE_LOGIN_MODAL('singup');
       } else {
-        this.CHANGE_STATE_LOGIN_MODAL("login");
+        this.CHANGE_STATE_LOGIN_MODAL('login');
       }
     }
   }
 };
 </script>
 
-<style lang="scss">
-$modules: "login-modal";
+<style lang="scss" scoped>
+$modules: 'login-modal';
 .#{$modules} {
   position: fixed;
   width: 100%;
@@ -166,7 +126,7 @@ $modules: "login-modal";
     vertical-align: middle;
     display: inline-block;
     overflow: hidden;
-    content: "";
+    content: '';
     font-size: 0;
   }
   &__content {
@@ -191,7 +151,7 @@ $modules: "login-modal";
 }
 
 /* modal : Login */
-$modules: "template-login";
+$modules: 'template-login';
 .#{$modules} {
   max-width: 400px;
   width: 80%;

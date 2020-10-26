@@ -44,8 +44,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
-/* With us : bland list */
+<style lang="scss" scoped>
 $modules: 'coperation-list';
 .#{$modules} {
   width: 100%;

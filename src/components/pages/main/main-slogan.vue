@@ -1,16 +1,10 @@
 <template>
   <section>
     <!-- Slogan -->
-    <h3 class="_blind">
-      Slogan<br /><span>Lorem ipsum dolor sit amet conse</span>
-    </h3>
+    <h3 class="_blind">Slogan<br /><span>Lorem ipsum dolor sit amet conse</span></h3>
     <div class="common-item-box">
       <div class="main-slogan">
-        <img
-          class="main-slogan__image"
-          src="~@/assets/images/main_banner03.jpg"
-          alt="slogan box background image"
-        />
+        <img class="main-slogan__image" src="~@/assets/images/main_banner03.jpg" alt="slogan box background image" />
         <div class="main-slogan__text">
           <div>
             <p>10% of every MAKE sale supports worker-owned businesses</p>
@@ -23,13 +17,12 @@
 
 <script>
 export default {
-  name: "main-slogan"
+  name: 'main-slogan'
 };
 </script>
 
-<style lang="scss">
-/* Slogan : main-slogan */
-$modules: "main-slogan";
+<style lang="scss" scoped>
+$modules: 'main-slogan';
 .#{$modules} {
   width: 100%;
   margin: 3rem auto;

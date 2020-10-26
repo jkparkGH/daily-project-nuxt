@@ -9,6 +9,7 @@ const nodeExternals = require('webpack-node-externals');
 const src = 'src';
 
 module.exports = {
+  target: 'static',
   srcDir: 'src/',
   router: {
     base: '/',

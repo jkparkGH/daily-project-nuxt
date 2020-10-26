@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $modules: 'todays-view';
 .#{$modules} {
   position: fixed;

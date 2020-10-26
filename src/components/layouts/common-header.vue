@@ -2,25 +2,10 @@
   <!-- header -->
   <header class="common-header">
     <div class="common-header__container">
-      <button
-        type="button"
-        class="btn-mobile-navigation"
-        :class="{ nav_on: navigationOn }"
-        @click="toggleNavigation"
-        aria-label="헤더 메뉴 버튼(모바일 기기 전용)"
-      >
-        <i></i><i></i><i></i>
-      </button>
+      <button type="button" class="btn-mobile-navigation" :class="{ nav_on: navigationOn }" @click="toggleNavigation" aria-label="헤더 메뉴 버튼(모바일 기기 전용)"><i></i><i></i><i></i></button>
       <h1 class="common-header__logo">
-        <router-link
-          :to="{ path: '/' }"
-          aria-label="뷰티하우스 로고"
-          title="뷰티하우스 로고"
-        >
-          <img
-            src="~@/assets/images/logo_header_white.png"
-            alt="뷰티하우스 로고 이미지"
-          />
+        <router-link :to="{ path: '/' }" aria-label="뷰티하우스 로고" title="뷰티하우스 로고">
+          <img src="~@/assets/images/logo_header_white.png" alt="뷰티하우스 로고 이미지" />
         </router-link>
       </h1>
       <div class="float_right">
@@ -42,37 +27,23 @@
         </nav>
         <ul class="header-button-group">
           <li>
-            <button
-              type="button"
-              class="btn-login"
-              @click="openLoginModal('login')"
-            >
+            <button type="button" class="btn-login" @click="openLoginModal('login')">
               <span>Login</span>
             </button>
           </li>
           <li>
-            <button
-              type="button"
-              class="btn-signup"
-              @click="openLoginModal('signup')"
-            >
+            <button type="button" class="btn-signup" @click="openLoginModal('signup')">
               <span>SignUp</span>
             </button>
           </li>
           <li>
-            <button type="button" class="btn-cart">
-              <span>Cart</span><span class="cart-count">0</span>
-            </button>
+            <button type="button" class="btn-cart"><span>Cart</span><span class="cart-count">0</span></button>
           </li>
         </ul>
       </div>
     </div>
     <!-- aside : mobile-gnb -->
-    <aside
-      class="mobile-gnb"
-      :class="{ nav_on: navigationOn }"
-      id="navigationMobile"
-    >
+    <aside class="mobile-gnb" :class="{ nav_on: navigationOn }" id="navigationMobile">
       <div class="mobile-gnb__dim" @click="toggleNavigation"></div>
       <nav class="mobile-gnb__cotainer">
         <ul class="menu-list-main">
@@ -116,10 +87,10 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
 
 export default {
-  name: "common-header",
+  name: 'common-header',
   data() {
     return {
       navigationOn: false
@@ -136,8 +107,8 @@ export default {
     },
     // $store > uiInteraction
     ...mapActions({
-      TOGGLE_LOGIN_MODAL: "uiInteraction/TOGGLE_LOGIN_MODAL",
-      CHANGE_STATE_LOGIN_MODAL: "uiInteraction/CHANGE_STATE_LOGIN_MODAL"
+      TOGGLE_LOGIN_MODAL: 'uiInteraction/TOGGLE_LOGIN_MODAL',
+      CHANGE_STATE_LOGIN_MODAL: 'uiInteraction/CHANGE_STATE_LOGIN_MODAL'
     }),
     openLoginModal(typeString) {
       this.CHANGE_STATE_LOGIN_MODAL(typeString);
@@ -147,8 +118,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-$modules: "common-header";
+<style lang="scss" scoped>
+$modules: 'common-header';
 .#{$modules} {
   width: 100%;
   height: 52px;
@@ -166,7 +137,7 @@ $modules: "common-header";
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     @include clearfix;
     &:after {
-      content: "";
+      content: '';
       display: table;
       clear: both;
     }
@@ -193,7 +164,8 @@ $modules: "common-header";
 }
 
 /* moblie - navigation btn-mobile-navigation */
-.btn-mobile-navigation {
+$modules: 'btn-mobile-navigation';
+.#{$modules} {
   position: absolute;
   width: 22px;
   height: 14px;
@@ -242,8 +214,9 @@ $modules: "common-header";
   }
 }
 
-// web-gnb
-.web-gnb {
+/* web-gnb */
+$modules: 'web-gnb';
+.#{web-gnb} {
   float: left;
   margin-right: 4rem;
   @media only screen and (max-width: 768px) {
@@ -268,8 +241,9 @@ $modules: "common-header";
   }
 }
 
-// header-button-group
-.header-button-group {
+/* header-button-group */
+$modules: 'header-button-group';
+.#{$modules} {
   float: left;
   margin-right: 1rem;
   @media only screen and (max-width: 768px) {
@@ -293,16 +267,16 @@ $modules: "common-header";
         padding: 1.1rem 0.3rem;
       }
       &.btn-login:before {
-        background-image: url("~@/assets/images/icon_login.png");
+        background-image: url('~@/assets/images/icon_login.png');
       }
       &.btn-signup:before {
-        background-image: url("~@/assets/images/icon_join.png");
+        background-image: url('~@/assets/images/icon_join.png');
       }
       &.btn-cart:before {
-        background-image: url("~@/assets/images/icon_cart.png");
+        background-image: url('~@/assets/images/icon_cart.png');
       }
       &:before {
-        content: "";
+        content: '';
         display: inline-block;
         width: 14px;
         height: 14px;
@@ -342,7 +316,8 @@ $modules: "common-header";
   }
 }
 
-$modules: "mobile-gnb";
+/* mobile-gnb */
+$modules: 'mobile-gnb';
 .#{$modules} {
   position: fixed;
   z-index: 4;

@@ -2,44 +2,31 @@
   <section>
     <!-- New Arrivals -->
     <div class="common-item-box">
-      <ul class="main-product-list">
-        <li
-          v-for="(item, $index) in filteredProductList"
-          :key="'products' + $index"
-          :class="{ new: item.new, sale: item.sale }"
-          :data-product-uid="item.uid"
-        >
-          <div class="main-product-list__label-container">
+      <ul class="product-list">
+        <li v-for="(item, $index) in filteredProductList" :key="'products' + $index" :class="{ new: item.new, sale: item.sale }" :data-product-uid="item.uid">
+          <div class="product-list__label-container">
             <span class="label-new" v-if="item.new">New</span>
             <span class="label-sale" v-if="item.sale">Sale</span>
           </div>
-          <div class="main-product-list__image-container">
-            <img
-              class="product-image"
-              :src="'/temp/products/' + item.images"
-              alt="product image"
-            />
+          <div class="product-list__image-container">
+            <img class="product-image" :src="'/temp/products/' + item.images" alt="product image" />
             <router-link class="product-dim" :to="'/products/' + item.uid">
               <span class="product-dim__view-detail">View detail</span>
             </router-link>
           </div>
-          <p class="main-product-list__category">{{ item.gender }}</p>
-          <p class="main-product-list__item-name">
+          <p class="product-list__category">{{ item.gender }}</p>
+          <p class="product-list__item-name">
             {{ item.name }}
           </p>
-          <p class="main-product-list__price-before">
+          <p class="product-list__price-before">
             ￦<span>{{ item.beforePrice | toCurrency }}</span>
           </p>
-          <p class="main-product-list__price-current">
+          <p class="product-list__price-current">
             ￦<span>{{ item.crrPrice | toCurrency }}</span>
           </p>
-          <div class="main-product-list__button-container">
-            <button type="button" class="btn-product add-cart">
-              Add<br />Cart
-            </button>
-            <button type="button" class="btn-product buy-now">
-              Buy<br />Now
-            </button>
+          <div class="product-list__button-container">
+            <button type="button" class="btn-product add-cart">Add<br />Cart</button>
+            <button type="button" class="btn-product buy-now">Buy<br />Now</button>
           </div>
         </li>
       </ul>
@@ -48,30 +35,26 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 export default {
-  name: "main-product-list",
+  name: 'product-list',
   computed: {
     ...mapGetters({
-      products: "products/products",
-      searchInfo: "products/searchInfo"
+      products: 'products/products',
+      searchInfo: 'products/searchInfo'
     }),
     filteredProductList() {
       const { searchText, ascending } = this.searchInfo;
       let result = this.products;
       if (searchText) {
-        result = result.filter(
-          el => el.name.toLowerCase().indexOf(searchText) > -1
-        );
+        result = result.filter(el => el.name.toLowerCase().indexOf(searchText) > -1);
       }
-      if (typeof ascending.cost === "boolean") {
+      if (typeof ascending.cost === 'boolean') {
         result = result.slice().sort((a, b) => {
-          return ascending.cost
-            ? a.crrPrice - b.crrPrice
-            : b.crrPrice - a.crrPrice;
+          return ascending.cost ? a.crrPrice - b.crrPrice : b.crrPrice - a.crrPrice;
         });
       }
-      if (typeof ascending.name === "boolean") {
+      if (typeof ascending.name === 'boolean') {
         result = result.slice().sort((a, b) => {
           return ascending.name ? -1 : 1;
         });
@@ -82,10 +65,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      GET_PRODUCTS: "products/GET_PRODUCTS"
+      GET_PRODUCTS: 'products/GET_PRODUCTS'
     }),
     productsFilter(productsList) {
-      if (this.$route.path === "/products") {
+      if (this.$route.path === '/products') {
         return this.productListPageFilter(productsList);
       } else {
         return productsList;
@@ -100,9 +83,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-/* New Arrivals : main-product-list */
-$modules: "main-product-list";
+<style lang="scss" scoped>
+$modules: 'product-list';
 .#{$modules} {
   width: 100%;
   text-align: center;
@@ -134,7 +116,7 @@ $modules: "main-product-list";
     z-index: 2;
     min-height: 166px;
     &:after {
-      content: "";
+      content: '';
       display: table;
       clear: both;
     }
@@ -201,7 +183,7 @@ $modules: "main-product-list";
       &:before,
       &:after {
         position: absolute;
-        content: "";
+        content: '';
         /*width:140px;*/
         height: 1.6px;
         background-color: #fff;
@@ -297,7 +279,7 @@ $modules: "main-product-list";
       }
 
       &:before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -309,7 +291,7 @@ $modules: "main-product-list";
       }
 
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         width: 1px;
         height: 0px;
@@ -336,17 +318,17 @@ $modules: "main-product-list";
   }
 }
 
-.main-product-list li:hover .btn-product,
+.product-list li:hover .btn-product,
 .btn-product:focus {
   opacity: 1;
 }
 
-.main-product-list li:hover .btn-product:before,
+.product-list li:hover .btn-product:before,
 .btn-product:focus:before {
   width: 100%;
 }
 
-.main-product-list li:hover .btn-product:after,
+.product-list li:hover .btn-product:after,
 .btn-product:focus:after {
   height: 100%;
 }

@@ -61,26 +61,21 @@
 
 <script>
 export default {
-  name: "common-footer"
+  name: 'common-footer'
 };
 </script>
 
-<style lang="scss">
-/* footer : common-footer */
-.common-footer {
+<style lang="scss" scoped>
+$modules: 'common-footer';
+.#{$modules} {
   width: 100%;
   background-color: #000;
   &__navigation {
     margin: 0 auto;
     width: 100%;
     max-width: 1080px;
-    /*overflow:auto;*/
     padding: 1rem 0;
-    &:after {
-      clear: both;
-      display: table;
-      content: "";
-    }
+    @include clearfix();
     ul {
       float: left;
       margin-right: 2rem;
@@ -96,7 +91,7 @@ export default {
           display: inline-block;
           padding: 2px 0;
           &:before {
-            content: "";
+            content: '';
             position: absolute;
             bottom: 0;
             left: 0rem;
