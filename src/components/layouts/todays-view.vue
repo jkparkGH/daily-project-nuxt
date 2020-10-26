@@ -2,12 +2,18 @@
   <div class="todays-view" v-show="todaysViewList.length > 0">
     <span>today-views</span>
     <ul>
-      <li v-for="(item, $index) in todaysViewList" :key="'todays-view-list' + $index">
+      <li v-for="(item, $index) in pagenationFilter(todaysViewList)" :key="'todays-view-list' + $index">
         <router-link :to="'/products/' + item.uid">
           <img :src="'/temp/products/' + item.images" />
         </router-link>
       </li>
     </ul>
+    <div v-show="todaysViewList.length > 4" class="todays-view__pagination">
+      <button type="button" @click="movePrev">◀</button>
+      <span>{{ crrIndex + 1 }}</span
+      >&#47;<span>{{ totalPageCount }}</span>
+      <button type="button" @click="moveNext">▶</button>
+    </div>
   </div>
 </template>
 
@@ -16,12 +22,29 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'todays-view',
   data() {
-    return {};
+    return {
+      crrIndex: 0,
+      countPerPage: 4
+    };
   },
   computed: {
     ...mapGetters({
       todaysViewList: 'todaysview/todaysViewList'
-    })
+    }),
+    totalPageCount() {
+      return Math.ceil(this.todaysViewList.length / this.countPerPage);
+    }
+  },
+  methods: {
+    movePrev() {
+      this.crrIndex > 0 && this.crrIndex--;
+    },
+    moveNext() {
+      this.crrIndex + 1 < this.totalPageCount && this.crrIndex++;
+    },
+    pagenationFilter(todaysViewList) {
+      return todaysViewList.slice(this.crrIndex * this.countPerPage, (this.crrIndex + 1) * this.countPerPage);
+    }
   }
 };
 </script>
@@ -67,6 +90,17 @@ $modules: 'todays-view';
       display: block;
       width: 100%;
       height: auto;
+    }
+  }
+  &__pagination {
+    margin-top: 3px;
+    font-size: 0.4rem;
+    left: -0.5px;
+    font-weight: bold;
+    button {
+      font-size: 0.4rem;
+      left: -0.5px;
+      font-weight: bold;
     }
   }
 }

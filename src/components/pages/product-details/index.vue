@@ -2,7 +2,7 @@
   <div class="common-layout">
     <h3 class="_blind">Product Detail</h3>
     <p class="category-tag">
-      <a href="#_" class="back-to-list">◀<span>Back to List</span></a>
+      <router-link class="back-to-list" to="/products">◀<span>Back to List</span></router-link>
       <span
         >Products | <strong>{{ productDetailData.name }}</strong></span
       >
