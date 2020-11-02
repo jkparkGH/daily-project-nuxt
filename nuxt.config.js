@@ -27,7 +27,7 @@ module.exports = {
   cache: true,
   head: metaTags,
   plugins: plugins,
-  modules: ['@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/style-resources', 'nuxt-compress'],
   styleResources: { scss: ['@/assets/scss/preload.scss'] },
   generate: {
     async routes() {
