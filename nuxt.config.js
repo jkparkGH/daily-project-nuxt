@@ -1,5 +1,4 @@
 import dummyData from './src/store/data/dummy.js';
-// import shrinkRay from 'shrink-ray-current';
 
 const env = process.env.NODE_ENV;
 const envSetting = require(`./nuxt.env.${env}.js`);
@@ -28,7 +27,7 @@ module.exports = {
   cache: true,
   head: metaTags,
   plugins: plugins,
-  modules: ['@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/style-resources', 'nuxt-compress'],
   styleResources: { scss: ['@/assets/scss/preload.scss'] },
   generate: {
     async routes() {

@@ -8,8 +8,9 @@ https://daily-beauty-house.netlify.app/
 
 ## Dependencies
 
-1. "vue-awesome-swiper"
-   | https://swiperjs.com/api/#events && https://github.com/surmon-china/vue-awesome-swiper
+1. `vue-awesome-swiper`: https://swiperjs.com/api/#events && https://github.com/surmon-china/vue-awesome-swiper
+
+2. `nuxt-compress`: https://www.npmjs.com/package/nuxt-compress
 
 ## Jest TEST MEMO
 

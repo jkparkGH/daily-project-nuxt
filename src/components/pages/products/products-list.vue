@@ -2,14 +2,14 @@
   <section>
     <!-- New Arrivals -->
     <div class="common-item-box">
-      <ul class="product-list">
+      <ul class="product-list" v-lazy-container="{ selector: 'img' }">
         <li v-for="(item, $index) in filteredProductList" :key="'products' + $index" :class="{ new: item.new, sale: item.sale }" :data-product-uid="item.uid">
           <div class="product-list__label-container">
             <span class="label-new" v-if="item.new">New</span>
             <span class="label-sale" v-if="item.sale">Sale</span>
           </div>
           <div class="product-list__image-container">
-            <img class="product-image" :src="'/temp/products/' + item.images" alt="product image" loading="lazy" />
+            <img class="product-image" :data-src="'/temp/products/' + item.images" alt="product image" loading="lazy" />
             <router-link class="product-dim" :to="'/products/' + item.uid">
               <span class="product-dim__view-detail">View detail</span>
             </router-link>

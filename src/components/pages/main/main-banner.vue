@@ -4,7 +4,7 @@
     <!-- main-banner-slide -->
     <Swiper class="main-banner-slide" @slideChange="onSlideChange" :options="swiperOptionsObject">
       <SwiperSlide class="main-banner-slide__item-container" v-for="(item, index) in dummySlide" :key="'dummyslide' + index">
-        <img class="img_full" :src="item.images" alt="메인 배너 슬라이드 배경 이미지" loading="lazy" />
+        <img class="img_full swiper-lazy" :src="item.images" :data-src="item.images" alt="메인 배너 슬라이드 배경 이미지" />
         <div class="main-banner-slide__item-text">
           <h3>{{ item.title }}</h3>
           <p v-html="item.subtitle"></p>
@@ -15,6 +15,7 @@
             More View
           </router-link>
         </div>
+        <!-- <div class="swiper-lazy-preloader"></div> -->
       </SwiperSlide>
     </Swiper>
   </section>
@@ -31,6 +32,7 @@ export default {
   },
   data() {
     return {
+      homeUrl: 'https://daily-beauty-house.netlify.app/',
       dummySlide: [
         {
           title: 'The best place',
@@ -47,6 +49,11 @@ export default {
       ],
       swiperOptionsObject: {
         loop: true,
+        preloadImages: false,
+        lazy: {
+          loadPrevNext: true
+        },
+        slidesPerView: 1,
         breakpoints: {
           480: {
             slidesPerView: 1,
@@ -123,7 +130,7 @@ $modules: 'main-banner-slide';
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 540px) {
   .main-banner-slide__item-container {
     height: 240px;
     background-size: auto 100%;
@@ -151,7 +158,7 @@ $modules: 'main-banner-slide';
   }
 }
 
-@media only screen and (min-width: 481px) and (max-width: 640px) {
+@media only screen and (min-width: 541px) and (max-width: 640px) {
   .main-banner-slide__item-text {
     h3 {
       font-size: 0.938rem;
@@ -175,8 +182,7 @@ $modules: 'main-banner-slide';
       margin-bottom: 5px;
     }
     span {
-      font-size: 0.78rem;
-      padding-bottom: 5px;
+      display: none;
     }
   }
 }
