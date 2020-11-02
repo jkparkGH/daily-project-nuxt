@@ -5,7 +5,7 @@
       <button type="button" class="btn-mobile-navigation" :class="{ nav_on: navigationOn }" @click="toggleNavigation" aria-label="헤더 메뉴 버튼(모바일 기기 전용)"><i></i><i></i><i></i></button>
       <h1 class="common-header__logo">
         <router-link :to="{ path: '/' }" aria-label="뷰티하우스 로고" title="뷰티하우스 로고">
-          <img src="~@/assets/images/logo_header_white.png" alt="뷰티하우스 로고 이미지" />
+          <img src="~@/assets/images/logo_header_white.png" alt="뷰티하우스 로고 이미지" loading="lazy" />
         </router-link>
       </h1>
       <div class="float_right">

@@ -10,27 +10,27 @@
         </li>
         <li>
           <a href="#_" aria-label="TOMMY-HILFIGER link" title="TOMMY-HILFIGER link">
-            <img src="~@/assets/images/logo2_image.png" alt="TOMMY-HILFIGER logo image" />
+            <img src="~@/assets/images/logo2_image.png" alt="TOMMY-HILFIGER logo image" loading="lazy" />
           </a>
         </li>
         <li>
           <a href="#_" aria-label="DAVIDOFF link">
-            <img src="~@/assets/images/logo3_image.png" alt="DAVIDOFF logo image" />
+            <img src="~@/assets/images/logo3_image.png" alt="DAVIDOFF logo image" loading="lazy" />
           </a>
         </li>
         <li>
           <a href="#_" aria-label="Calvn-Klein link" title="Calvn-Klein link">
-            <img src="~@/assets/images/logo4_image.png" alt="Calvn-Klein logo image" />
+            <img src="~@/assets/images/logo4_image.png" alt="Calvn-Klein logo image" loading="lazy" />
           </a>
         </li>
         <li>
           <a href="#_" aria-label="HUGO-BOSS link" title="HUGO-BOSS link">
-            <img src="~@/assets/images/logo5_image.png" alt="HUGO-BOSS logo image" />
+            <img src="~@/assets/images/logo5_image.png" alt="HUGO-BOSS logo image" loading="lazy" />
           </a>
         </li>
         <li>
           <a href="#_" aria-label="ESCADA link" title="ESCADA link">
-            <img src="~@/assets/images/logo6_image.png" alt="ESCADA logo image" />
+            <img src="~@/assets/images/logo6_image.png" alt="ESCADA logo image" loading="lazy" />
           </a>
         </li>
       </ul>

@@ -10,7 +10,7 @@
     <div class="product-details">
       <div class="product-details__container">
         <div class="product-details__image">
-          <img :src="'/temp/products/' + productDetailData.images" :alt="`product ${productDetailData.uid}`" />
+          <img :src="'/temp/products/' + productDetailData.images" :alt="`product ${productDetailData.uid}`" loading="lazy" />
         </div>
       </div>
       <div class="product-details__container">

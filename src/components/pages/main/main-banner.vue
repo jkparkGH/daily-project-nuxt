@@ -4,7 +4,7 @@
     <!-- main-banner-slide -->
     <Swiper class="main-banner-slide" @slideChange="onSlideChange" :options="swiperOptionsObject">
       <SwiperSlide class="main-banner-slide__item-container" v-for="(item, index) in dummySlide" :key="'dummyslide' + index">
-        <img class="img_full" :src="item.images" alt="메인 배너 슬라이드 배경 이미지" />
+        <img class="img_full" :src="item.images" alt="메인 배너 슬라이드 배경 이미지" loading="lazy" />
         <div class="main-banner-slide__item-text">
           <h3>{{ item.title }}</h3>
           <p v-html="item.subtitle"></p>

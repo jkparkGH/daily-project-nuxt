@@ -5,7 +5,7 @@
         <li>
           <a href="#_">
             <div class="category-image">
-              <img src="~@/assets/images/collection1_image.jpg" alt="Product collection image" />
+              <img src="~@/assets/images/collection1_image.jpg" alt="Product collection image" loading="lazy" />
             </div>
             <span>Product<br />Collection</span>
           </a>
@@ -13,7 +13,7 @@
         <li>
           <a href="#_">
             <div class="category-image">
-              <img src="~@/assets/images/collection2_image.jpg" alt="Item collection image" />
+              <img src="~@/assets/images/collection2_image.jpg" alt="Item collection image" loading="lazy" />
             </div>
             <span>Item<br />Collection</span>
           </a>
@@ -21,7 +21,7 @@
         <li>
           <a href="#_">
             <div class="category-image">
-              <img src="~@/assets/images/collection3_image.jpg" alt="Event collection image" />
+              <img src="~@/assets/images/collection3_image.jpg" alt="Event collection image" loading="lazy" />
             </div>
             <span>Event<br />Collection</span>
           </a>

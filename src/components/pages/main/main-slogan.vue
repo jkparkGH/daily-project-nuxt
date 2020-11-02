@@ -4,7 +4,7 @@
     <h3 class="_blind">Slogan<br /><span>Lorem ipsum dolor sit amet conse</span></h3>
     <div class="common-item-box">
       <div class="main-slogan">
-        <img class="main-slogan__image" src="~@/assets/images/main_banner03.jpg" alt="slogan box background image" />
+        <img class="main-slogan__image" src="~@/assets/images/main_banner03.jpg" alt="slogan box background image" loading="lazy" />
         <div class="main-slogan__text">
           <div>
             <p>10% of every MAKE sale supports worker-owned businesses</p>

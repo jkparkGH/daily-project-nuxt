@@ -9,7 +9,7 @@
             <span class="label-sale" v-if="item.sale">Sale</span>
           </div>
           <div class="product-list__image-container">
-            <img class="product-image" :src="'/temp/products/' + item.images" alt="product image" />
+            <img class="product-image" :src="'/temp/products/' + item.images" alt="product image" loading="lazy" />
             <router-link class="product-dim" :to="'/products/' + item.uid">
               <span class="product-dim__view-detail">View detail</span>
             </router-link>

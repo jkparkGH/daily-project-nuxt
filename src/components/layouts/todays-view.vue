@@ -4,7 +4,7 @@
     <ul>
       <li v-for="(item, $index) in pagenationFilter(todaysViewList)" :key="'todays-view-list' + $index">
         <router-link :to="'/products/' + item.uid">
-          <img :src="'/temp/products/' + item.images" />
+          <img :src="'/temp/products/' + item.images" loading="lazy" />
         </router-link>
       </li>
     </ul>
