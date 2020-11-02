@@ -1,5 +1,5 @@
 import dummyData from './src/store/data/dummy.js';
-import shrinkRay from 'shrink-ray-current';
+// import shrinkRay from 'shrink-ray-current';
 
 const env = process.env.NODE_ENV;
 const envSetting = require(`./nuxt.env.${env}.js`);
@@ -36,9 +36,6 @@ module.exports = {
         return `/products/${product.uid}`;
       });
     }
-  },
-  render: {
-    compressor: shrinkRay()
   },
   build: {
     vendor: ['axios', '@nuxt/babel-preset-app', 'babel-polyfill'],
