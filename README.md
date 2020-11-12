@@ -12,6 +12,8 @@ https://daily-beauty-house.netlify.app/
 
 2. `nuxt-compress`: https://www.npmjs.com/package/nuxt-compress
 
+3. `vue-lazyload`: https://www.npmjs.com/package/vue-lazyload
+
 ## Jest TEST MEMO
 
 1. Dependencies: `npm install --save-dev babel-jest jest jest-vue-preprocessor @vue/test-utils typescript`
