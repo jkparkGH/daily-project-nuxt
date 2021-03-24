@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "vue-eslint-parser",
+  "extends": ["plugin:vue/vue3-essential", "prettier"],
+  "plugins": ["vue"],
+  "rules": {
+    "no-undef": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0
+  }
+}
