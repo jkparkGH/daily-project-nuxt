@@ -3,14 +3,17 @@ node_modules
 
 # logs
 npm-debug.log
+yarn-error.log
 
 # Nuxt build
 .nuxt
-package-lock.json
-yarn.lock
 
 # Nuxt generate
 dist
 
+# test
+coverage
+
 # Private
 private_memo
+

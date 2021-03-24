@@ -1,3 +1,4 @@
+import path from 'path';
 import dummyData from './src/store/data/dummy.js';
 
 const env = process.env.NODE_ENV;
@@ -5,12 +6,18 @@ const envSetting = require(`./nuxt.env.${env}.js`);
 const metaTags = require('./nuxt.meta.js');
 const plugins = require('./nuxt.plugins.js');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
 const src = 'src';
 
 module.exports = {
   target: 'static',
+  env: envSetting,
+  loading: { color: '#000' },
+  cache: true,
+  head: metaTags,
+  plugins: plugins,
+
   srcDir: 'src/',
+
   router: {
     base: '/',
     linkActiveClass: 'active-link',
@@ -18,90 +25,79 @@ module.exports = {
       routes.push({
         name: 'pageNotFound',
         path: '*',
-        component: resolve(__dirname, src + '/pages/notfound.vue')
+        component: resolve(__dirname, src + '/pages/notfound.vue'),
       });
-    }
+    },
   },
-  env: envSetting,
-  loading: { color: '#000' },
-  cache: true,
-  head: metaTags,
-  plugins: plugins,
-  modules: ['@nuxtjs/style-resources', 'nuxt-compress'],
+
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/eslint-module', '@nuxtjs/composition-api'],
+
+  modules: [
+    '@nuxtjs/style-resources',
+    [
+      'nuxt-compress',
+      {
+        gzip: {
+          cache: true,
+        },
+        brotli: {
+          threshold: 10240,
+        },
+      },
+    ],
+  ],
+
   styleResources: { scss: ['@/assets/scss/preload.scss'] },
+
   generate: {
     async routes() {
-      return dummyData.dummyList.map(product => {
+      return dummyData.dummyList.map((product) => {
         return `/products/${product.uid}`;
       });
-    }
+    },
+    interval: 2000,
   },
+
   build: {
-    vendor: ['axios', '@nuxt/babel-preset-app', 'babel-polyfill'],
     extractCss: true,
     babel: {
-      presets({ isServer }) {
-        return [
-          [
-            '@nuxt/babel-preset-app',
-            {
-              buildTarget: isServer ? 'server' : 'client',
-              targets: isServer ? { node: 'current' } : { ie: 10 }
-            }
-          ]
-        ];
-      },
       plugins({ isDev }) {
         if (isDev) {
           return [];
         } else {
           return ['transform-remove-console'];
         }
-      }
+      },
     },
-    extend(config, { isDev, isClient, isServer }) {
+    extend(config) {
       config.devtool = 'hidden-source-map';
-      if (isDev && isClient) {
-        config.module.rules.push(
-          {
-            enforce: 'pre',
-            test: /\.(js|vue)$/,
-            loader: 'eslint-loader',
-            exclude: /(node_modules)/
-          },
-          {
-            test: /\.js$/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                plugins: ['@babel/plugin-syntax-dynamic-import']
-              }
-            },
-            exclude: /(node_modules)/
-          }
-        );
-      }
-      if (isServer) {
-        config.externals = [nodeExternals({})];
-      }
     },
     plugins: [
       new webpack.ProvidePlugin({
         _: 'lodash',
-        Promise: 'es6-promise'
-      })
-    ]
+        Promise: 'es6-promise',
+      }),
+    ],
   },
-  // serverMiddleware: [{ path: '/health/check', handler: '~/serverMiddleware/healthCheck.js' }],
+
+  polyfill: {
+    modules: ['nuxt-polyfill'],
+  },
+
   pageTransition: {
     name: 'fade',
-    mode: 'out-in'
-    // beforeEnter(el) {
-    //   console.log("### enter page before ###", el);
-    // }
+    mode: 'out-in',
   },
+
   layoutTransition: {
     name: 'layout',
-    mode: 'out-in'
-  }
+    mode: 'out-in',
+  },
+
+  components: [
+    {
+      path: '@/components',
+      extensions: ['vue'],
+    },
+  ],
 };

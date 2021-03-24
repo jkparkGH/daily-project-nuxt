@@ -15,21 +15,33 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.12.17",
+    "@nuxt/core": "^2.15.3",
+    "@nuxt/types": "^2.15.3",
+    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/composition-api": "^0.22.4",
     "@nuxtjs/device": "^1.2.7",
+    "@nuxtjs/eslint-config-typescript": "^6.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/style-resources": "^1.0.0",
     "axios": "^0.19.2",
+    "babel-core": "7.0.0-bridge.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-polyfill": "^6.26.0",
+    "core-js": "^3.6.5",
     "es6-promise": "^4.2.8",
     "lodash": "^4.17.19",
     "node-sass": "^4.14.1",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.9.0",
     "nuxt-compress": "^4.0.0",
-    "sass-loader": "^9.0.2",
+    "nuxt-polyfill": "^1.0.3",
+    "sass-loader": "^10.1.1",
     "swiper": "^6.3.2",
+    "ts-jest": "^26.5.4",
     "typescript": "^4.0.3",
     "vue-awesome-swiper": "^4.1.1",
     "vue-cookies": "^1.7.4",
+    "vue-jest": "^3.0.7",
     "vue-lazyload": "^1.3.3"
   },
   "devDependencies": {
@@ -42,39 +54,5 @@
     "eslint-plugin-vue": "^4.0.0",
     "jest": "^26.6.0",
     "jest-vue-preprocessor": "^1.7.1"
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          "@babel/preset-env"
-        ]
-      }
-    }
-  },
-  "jest": {
-    "verbose": true,
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
-    },
-    "moduleNameMapper": {
-      "^vue$": "vue/dist/vue.common.js",
-      "^~/(.*)$": "<rootDir>/$1"
-    },
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/components/**/*.{js, vue}",
-      "**/server/utils/*.{js}",
-      "!**/node_modules/**"
-    ],
-    "coverageReporters": [
-      "text-summary"
-    ]
   }
 }
