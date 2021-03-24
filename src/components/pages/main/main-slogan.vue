@@ -1,10 +1,19 @@
 <template>
   <section>
     <!-- Slogan -->
-    <h3 class="_blind">Slogan<br /><span>Lorem ipsum dolor sit amet conse</span></h3>
+    <h3 class="_blind">
+      Slogan
+      <br />
+      <span>Lorem ipsum dolor sit amet conse</span>
+    </h3>
     <div class="common-item-box">
       <div class="main-slogan">
-        <img class="main-slogan__image" src="~@/assets/images/main_banner03.jpg" alt="slogan box background image" loading="lazy" />
+        <img
+          class="main-slogan__image"
+          src="~@/assets/images/main_banner03.jpg"
+          alt="slogan box background image"
+          loading="lazy"
+        />
         <div class="main-slogan__text">
           <div>
             <p>10% of every MAKE sale supports worker-owned businesses</p>
@@ -15,10 +24,12 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'main-slogan'
-};
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+export default defineComponent({
+  name: 'main-slogan',
+});
 </script>
 
 <style lang="scss" scoped>

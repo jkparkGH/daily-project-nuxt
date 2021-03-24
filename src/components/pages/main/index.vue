@@ -4,21 +4,21 @@
     <ContentTitle
       :info="{
         title: 'New Arrivals',
-        text: 'Lorem ipsum dolor sit amet Arrivals'
+        text: 'Lorem ipsum dolor sit amet Arrivals',
       }"
     />
     <ProudctList />
     <ContentTitle
       :info="{
         title: 'Featured Category',
-        text: 'Lorem ipsum dolor sit amet category'
+        text: 'Lorem ipsum dolor sit amet category',
       }"
     />
     <MainFeaturedCategory />
     <ContentTitle
       :info="{
         title: 'Magazine News',
-        text: 'Lorem ipsum dolor sit amet News'
+        text: 'Lorem ipsum dolor sit amet News',
       }"
     />
     <MainMagazineNews />
@@ -27,15 +27,18 @@
   </section>
 </template>
 
-<script>
-import ContentTitle from '@/components/common/content-title';
-import MainBanner from '@/components/pages/main/main-banner';
-import ProudctList from '@/components/pages/products/products-list';
-import MainFeaturedCategory from '@/components/pages/main/main-featured-category';
-import MainMagazineNews from '@/components/pages/main/main-magazine-news';
-import MainCoperationList from '@/components/pages/main/main-coperation-list';
-import MainSlogan from '@/components/pages/main/main-slogan';
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+import ContentTitle from '@/components/common/content-title.vue';
+import MainBanner from '@/components/pages/main/main-banner.vue';
+import ProudctList from '@/components/pages/products/products-list.vue';
+import MainFeaturedCategory from '@/components/pages/main/main-featured-category.vue';
+import MainMagazineNews from '@/components/pages/main/main-magazine-news.vue';
+import MainCoperationList from '@/components/pages/main/main-coperation-list.vue';
+import MainSlogan from '@/components/pages/main/main-slogan.vue';
+
+export default defineComponent({
   name: 'main-index',
   components: {
     ContentTitle,
@@ -44,8 +47,7 @@ export default {
     MainFeaturedCategory,
     MainMagazineNews,
     MainCoperationList,
-    MainSlogan
+    MainSlogan,
   },
-  mounted() {}
-};
+});
 </script>

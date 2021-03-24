@@ -4,31 +4,52 @@
       <ul class="magazine-news-list">
         <li>
           <a href="#_">
-            <img class="image-magazine" src="~@/assets/images/magazine_img01.jpg" alt="매거진 썸네일 사진 : 2017.08.12" loading="lazy" />
+            <img
+              class="image-magazine"
+              src="~@/assets/images/magazine_img01.jpg"
+              alt="매거진 썸네일 사진 : 2017.08.12"
+              loading="lazy"
+            />
             <p class="news-date">Tuesday, August 12, 2017</p>
             <p class="news-title">EXCEPTEUR SINT OCCAECA</p>
             <p class="news-content">
-              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco
             </p>
           </a>
         </li>
         <li>
           <a href="#_">
-            <img class="image-magazine" src="~@/assets/images/magazine_img02.jpg" alt="매거진 썸네일 사진 : 2017.08.13" loading="lazy" />
+            <img
+              class="image-magazine"
+              src="~@/assets/images/magazine_img02.jpg"
+              alt="매거진 썸네일 사진 : 2017.08.13"
+              loading="lazy"
+            />
             <p class="news-date">thursday, August 13, 2017</p>
             <p class="news-title">EXCEPTEUR SINT OCCAECA</p>
             <p class="news-content">
-              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco
             </p>
           </a>
         </li>
         <li>
           <a href="#_">
-            <img class="image-magazine" src="~@/assets/images/magazine_img03.jpg" alt="매거진 썸네일 사진 : 2017.08.14" loading="lazy" />
+            <img
+              class="image-magazine"
+              src="~@/assets/images/magazine_img03.jpg"
+              alt="매거진 썸네일 사진 : 2017.08.14"
+              loading="lazy"
+            />
             <p class="news-date">Friday, August 14, 2017</p>
             <p class="news-title">EXCEPTEUR SINT OCCAECA</p>
             <p class="news-content">
-              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco
             </p>
           </a>
         </li>
@@ -37,10 +58,12 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'main-magazine-news'
-};
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+export default defineComponent({
+  name: 'main-magazine-news',
+});
 </script>
 
 <style lang="scss" scoped>

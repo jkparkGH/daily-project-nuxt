@@ -3,20 +3,22 @@
     <h4>404</h4>
     <p>OOPS! PAGE NOT BE FOUND</p>
     <span>
-      sorry but the page you are looking for does not exist, name changed or is
-      temporarity unavailable.
+      sorry but the page you are looking for does not exist, name changed or is temporarity
+      unavailable.
     </span>
   </section>
 </template>
 
-<script>
-export default {
-  name: "not-found-page"
-};
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+export default defineComponent({
+  name: 'not-found-page',
+});
 </script>
 
 <style lang="scss" scoped>
-$modules: "not-found-page";
+$modules: 'not-found-page';
 .#{$modules} {
   text-align: center;
   padding: 200px 20px;

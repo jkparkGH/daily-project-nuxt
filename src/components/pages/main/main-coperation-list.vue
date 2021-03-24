@@ -1,6 +1,10 @@
 <template>
   <section>
-    <h3 class="_blind">With us<br /><span>bland list</span></h3>
+    <h3 class="_blind">
+      With us
+      <br />
+      <span>bland list</span>
+    </h3>
     <div class="common-item-box">
       <ul class="coperation-list">
         <li>
@@ -10,7 +14,11 @@
         </li>
         <li>
           <a href="#_" aria-label="TOMMY-HILFIGER link" title="TOMMY-HILFIGER link">
-            <img src="~@/assets/images/logo2_image.png" alt="TOMMY-HILFIGER logo image" loading="lazy" />
+            <img
+              src="~@/assets/images/logo2_image.png"
+              alt="TOMMY-HILFIGER logo image"
+              loading="lazy"
+            />
           </a>
         </li>
         <li>
@@ -20,7 +28,11 @@
         </li>
         <li>
           <a href="#_" aria-label="Calvn-Klein link" title="Calvn-Klein link">
-            <img src="~@/assets/images/logo4_image.png" alt="Calvn-Klein logo image" loading="lazy" />
+            <img
+              src="~@/assets/images/logo4_image.png"
+              alt="Calvn-Klein logo image"
+              loading="lazy"
+            />
           </a>
         </li>
         <li>
@@ -38,10 +50,12 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'main-coperation-list'
-};
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+export default defineComponent({
+  name: 'main-coperation-list',
+});
 </script>
 
 <style lang="scss" scoped>

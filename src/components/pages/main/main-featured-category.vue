@@ -5,25 +5,49 @@
         <li>
           <a href="#_">
             <div class="category-image">
-              <img src="~@/assets/images/collection1_image.jpg" alt="Product collection image" loading="lazy" />
+              <img
+                src="~@/assets/images/collection1_image.jpg"
+                alt="Product collection image"
+                loading="lazy"
+              />
             </div>
-            <span>Product<br />Collection</span>
+            <span>
+              Product
+              <br />
+              Collection
+            </span>
           </a>
         </li>
         <li>
           <a href="#_">
             <div class="category-image">
-              <img src="~@/assets/images/collection2_image.jpg" alt="Item collection image" loading="lazy" />
+              <img
+                src="~@/assets/images/collection2_image.jpg"
+                alt="Item collection image"
+                loading="lazy"
+              />
             </div>
-            <span>Item<br />Collection</span>
+            <span>
+              Item
+              <br />
+              Collection
+            </span>
           </a>
         </li>
         <li>
           <a href="#_">
             <div class="category-image">
-              <img src="~@/assets/images/collection3_image.jpg" alt="Event collection image" loading="lazy" />
+              <img
+                src="~@/assets/images/collection3_image.jpg"
+                alt="Event collection image"
+                loading="lazy"
+              />
             </div>
-            <span>Event<br />Collection</span>
+            <span>
+              Event
+              <br />
+              Collection
+            </span>
           </a>
         </li>
       </ul>
@@ -31,10 +55,12 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'main-featured-category'
-};
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+export default defineComponent({
+  name: 'main-featured-category',
+});
 </script>
 
 <style lang="scss" scoped>

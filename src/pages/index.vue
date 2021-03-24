@@ -4,13 +4,15 @@
   </div>
 </template>
 
-<script>
-import MainComponents from "@/components/pages/main";
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
 
-export default {
-  name: "main-landing",
+import MainComponents from '@/components/pages/main/index.vue';
+
+export default defineComponent({
+  name: 'main-landing',
   components: {
-    MainComponents
-  }
-};
+    MainComponents,
+  },
+});
 </script>

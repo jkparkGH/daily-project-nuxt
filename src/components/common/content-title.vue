@@ -1,11 +1,15 @@
 <template>
   <h3 class="content-title">
-    {{ info.title }}<br /><span>{{ info.text }}</span>
+    {{ info.title }}
+    <br />
+    <span>{{ info.text }}</span>
   </h3>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
+export default defineComponent({
   name: 'content-title',
   props: {
     info: {
@@ -14,12 +18,12 @@ export default {
       default() {
         return {
           title: '-',
-          text: '-'
+          text: '-',
         };
-      }
-    }
-  }
-};
+      },
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>

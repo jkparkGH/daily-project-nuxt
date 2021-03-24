@@ -3,8 +3,17 @@
     <h3 class="_blind">Main banner slide</h3>
     <!-- main-banner-slide -->
     <Swiper class="main-banner-slide" @slideChange="onSlideChange" :options="swiperOptionsObject">
-      <SwiperSlide class="main-banner-slide__item-container" v-for="(item, index) in dummySlide" :key="'dummyslide' + index">
-        <img class="img_full swiper-lazy" :src="item.images" :data-src="item.images" alt="메인 배너 슬라이드 배경 이미지" />
+      <SwiperSlide
+        class="main-banner-slide__item-container"
+        v-for="(item, index) in dummySlide"
+        :key="'dummyslide' + index"
+      >
+        <img
+          class="img_full swiper-lazy"
+          :src="item.images"
+          :data-src="item.images"
+          alt="메인 배너 슬라이드 배경 이미지"
+        />
         <div class="main-banner-slide__item-text">
           <h3>{{ item.title }}</h3>
           <p v-html="item.subtitle"></p>
@@ -21,54 +30,64 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 
-export default {
+export default defineComponent({
   name: 'main-banner',
   components: {
     Swiper,
-    SwiperSlide
+    SwiperSlide,
   },
-  data() {
+  setup() {
+    const homeUrl = 'https://daily-beauty-house.netlify.app/';
+
+    const dummySlide = [
+      {
+        title: 'The best place',
+        subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
+        content:
+          'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam First.',
+        images: 'temp/main_banner02.jpg',
+      },
+      {
+        title: 'The best place',
+        subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
+        content:
+          'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Second.',
+        images: 'temp/main_banner01.jpg',
+      },
+    ];
+
+    const swiperOptionsObject = {
+      loop: true,
+      preloadImages: false,
+      lazy: {
+        loadPrevNext: true,
+      },
+      slidesPerView: 1,
+      breakpoints: {
+        480: {
+          slidesPerView: 1,
+          spaceBetween: 0,
+        },
+      },
+    };
+
+    const onSlideChange = (e: Event) => {
+      console.log('slide change', e);
+    };
+
     return {
-      homeUrl: 'https://daily-beauty-house.netlify.app/',
-      dummySlide: [
-        {
-          title: 'The best place',
-          subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
-          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam First.',
-          images: 'temp/main_banner02.jpg'
-        },
-        {
-          title: 'The best place',
-          subtitle: 'MORE BEST<br />ITEM &amp; BRANDS',
-          content: 'Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Second.',
-          images: 'temp/main_banner01.jpg'
-        }
-      ],
-      swiperOptionsObject: {
-        loop: true,
-        preloadImages: false,
-        lazy: {
-          loadPrevNext: true
-        },
-        slidesPerView: 1,
-        breakpoints: {
-          480: {
-            slidesPerView: 1,
-            spaceBetween: 0
-          }
-        }
-      }
+      homeUrl,
+      dummySlide,
+      swiperOptionsObject,
+      onSlideChange,
     };
   },
-  methods: {
-    onSlideChange(e) {
-      console.log('slide change', e);
-    }
-  }
-};
+});
 </script>
 
 <style lang="scss" scoped>
