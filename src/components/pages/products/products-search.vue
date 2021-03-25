@@ -2,18 +2,28 @@
   <!-- products-search -->
   <div class="products-search">
     <div class="products-search__textfield">
-      <input type="text" placeholder="Search Product Name" v-model="searchText" />
+      <input type="text" placeholder="Search Product Name" v-model="computedSearchText" />
     </div>
     <ul class="products-search__sort">
       <li>
         <span>Cost</span>
-        <button type="button" title="sort button" :aria-label="`sort ${ascending.cost ? 'ascending' : 'descending'} button`" @click="ascendingTypeReverse('cost')">
+        <button
+          type="button"
+          title="sort button"
+          :aria-label="`sort ${ascending.cost ? 'ascending' : 'descending'} button`"
+          @click="ascendingTypeReverse('cost')"
+        >
           {{ ascending.cost ? '▲' : '▼' }}
         </button>
       </li>
       <li>
         <span>Name</span>
-        <button type="button" title="sort button" :aria-label="`sort ${ascending.name ? 'ascending' : 'descending'} button`" @click="ascendingTypeReverse('name')">
+        <button
+          type="button"
+          title="sort button"
+          :aria-label="`sort ${ascending.name ? 'ascending' : 'descending'} button`"
+          @click="ascendingTypeReverse('name')"
+        >
           {{ ascending.name ? '▲' : '▼' }}
         </button>
       </li>
@@ -21,39 +31,44 @@
   </div>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex';
-export default {
+<script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { useNamespacedGetters, useNamespacedActions } from 'vuex-composition-helpers';
+
+export default defineComponent({
   name: 'product-search',
-  computed: {
-    ...mapGetters({
-      searchInfo: 'products/searchInfo'
-    }),
-    searchText: {
+  setup() {
+    const { searchInfo } = useNamespacedGetters('products', ['searchInfo']);
+    const { ascending, searchText } = searchInfo.value;
+    const { SET_SEARCH_INFO_TEXT, SET_SEARCH_INFO_ASCENDING } = useNamespacedActions('products', [
+      'SET_SEARCH_INFO_TEXT',
+      'SET_SEARCH_INFO_ASCENDING',
+    ]);
+
+    const computedSearchText = computed({
       get: function() {
-        return this.searchInfo.searchText;
+        return searchText;
       },
       set: function(value) {
-        this.SET_SEARCH_INFO_TEXT(value);
-      }
-    },
-    ascending() {
-      return this.searchInfo.ascending;
-    }
-  },
-  methods: {
-    ...mapActions({
-      SET_SEARCH_INFO_TEXT: 'products/SET_SEARCH_INFO_TEXT',
-      SET_SEARCH_INFO_ASCENDING: 'products/SET_SEARCH_INFO_ASCENDING'
-    }),
-    searchTextChange() {},
-    ascendingTypeReverse(typeString) {
-      this.SET_SEARCH_INFO_ASCENDING({
-        [typeString]: !this.ascending[typeString]
+        SET_SEARCH_INFO_TEXT(value);
+      },
+    });
+
+    function ascendingTypeReverse(typeString: string | null) {
+      if (!typeString) return;
+
+      SET_SEARCH_INFO_ASCENDING({
+        [typeString]: !ascending[typeString],
       });
     }
-  }
-};
+
+    return {
+      computedSearchText,
+      ascending,
+      ascendingTypeReverse,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

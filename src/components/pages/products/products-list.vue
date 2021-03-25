@@ -3,13 +3,23 @@
     <!-- New Arrivals -->
     <div class="common-item-box">
       <ul class="product-list" v-lazy-container="{ selector: 'img' }">
-        <li v-for="(item, $index) in filteredProductList" :key="'products' + $index" :class="{ new: item.new, sale: item.sale }" :data-product-uid="item.uid">
+        <li
+          v-for="(item, $index) in filteredProductList"
+          :key="'products' + $index"
+          :class="{ new: item.new, sale: item.sale }"
+          :data-product-uid="item.uid"
+        >
           <div class="product-list__label-container">
             <span class="label-new" v-if="item.new">New</span>
             <span class="label-sale" v-if="item.sale">Sale</span>
           </div>
           <div class="product-list__image-container">
-            <img class="product-image" :data-src="'/temp/products/' + item.images" alt="product image" loading="lazy" />
+            <img
+              class="product-image"
+              :data-src="'/temp/products/' + item.images"
+              alt="product image"
+              loading="lazy"
+            />
             <router-link class="product-dim" :to="'/products/' + item.uid">
               <span class="product-dim__view-detail">View detail</span>
             </router-link>
@@ -19,14 +29,24 @@
             {{ item.name }}
           </p>
           <p class="product-list__price-before">
-            ￦<span>{{ item.beforePrice | toCurrency }}</span>
+            ￦
+            <span>{{ toCurrency(item.beforePrice) }}</span>
           </p>
           <p class="product-list__price-current">
-            ￦<span>{{ item.crrPrice | toCurrency }}</span>
+            ￦
+            <span>{{ toCurrency(item.crrPrice) }}</span>
           </p>
           <div class="product-list__button-container">
-            <button type="button" class="btn-product add-cart">Add<br />Cart</button>
-            <button type="button" class="btn-product buy-now">Buy<br />Now</button>
+            <button type="button" class="btn-product add-cart">
+              Add
+              <br />
+              Cart
+            </button>
+            <button type="button" class="btn-product buy-now">
+              Buy
+              <br />
+              Now
+            </button>
           </div>
         </li>
       </ul>
@@ -34,53 +54,62 @@
   </section>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex';
-export default {
+<script lang="ts">
+import { computed, defineComponent, onMounted } from '@nuxtjs/composition-api';
+import { useNamespacedGetters, useNamespacedActions } from 'vuex-composition-helpers';
+
+import { toCurrency } from '~/utils/functions';
+
+export default defineComponent({
   name: 'product-list',
-  computed: {
-    ...mapGetters({
-      products: 'products/products',
-      searchInfo: 'products/searchInfo'
-    }),
-    filteredProductList() {
-      const { searchText, ascending } = this.searchInfo;
-      let result = this.products;
+
+  setup() {
+    const { products, searchInfo } = useNamespacedGetters('products', ['products', 'searchInfo']);
+
+    const { GET_PRODUCTS } = useNamespacedActions('products', ['GET_PRODUCTS']);
+
+    const filteredProductList = computed(() => {
+      const { ascending, searchText } = searchInfo.value;
+
+      let result = [...products.value];
+
       if (searchText) {
-        result = result.filter(el => el.name.toLowerCase().indexOf(searchText) > -1);
+        result = result.filter((el) => {
+          return el.name.toLowerCase().indexOf(searchText) > -1;
+        });
       }
+
       if (typeof ascending.cost === 'boolean') {
         result = result.slice().sort((a, b) => {
           return ascending.cost ? a.crrPrice - b.crrPrice : b.crrPrice - a.crrPrice;
         });
       }
+
       if (typeof ascending.name === 'boolean') {
         result = result.slice().sort((a, b) => {
           return ascending.name ? -1 : 1;
         });
-        this.$forceUpdate();
       }
+
       return result;
-    }
-  },
-  methods: {
-    ...mapActions({
-      GET_PRODUCTS: 'products/GET_PRODUCTS'
-    }),
-    productsFilter(productsList) {
-      if (this.$route.path === '/products') {
-        return this.productListPageFilter(productsList);
-      } else {
-        return productsList;
-      }
-    }
-  },
-  mounted() {
-    this.GET_PRODUCTS().then(() => {
-      console.log(this.products); // ? ARABABA
     });
-  }
-};
+
+    function fetchData() {
+      GET_PRODUCTS().then(() => {
+        console.log(products);
+      });
+    }
+
+    onMounted(() => {
+      fetchData();
+    });
+
+    return {
+      toCurrency,
+      filteredProductList,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

@@ -2,15 +2,23 @@
   <div class="common-layout">
     <h3 class="_blind">Product Detail</h3>
     <p class="category-tag">
-      <router-link class="back-to-list" to="/products">◀<span>Back to List</span></router-link>
-      <span
-        >Products | <strong>{{ productDetailData.name }}</strong></span
-      >
+      <router-link class="back-to-list" to="/products">
+        ◀
+        <span>Back to List</span>
+      </router-link>
+      <span>
+        Products |
+        <strong>{{ productDetailData.name }}</strong>
+      </span>
     </p>
     <div class="product-details">
       <div class="product-details__container">
         <div class="product-details__image">
-          <img :src="'/temp/products/' + productDetailData.images" :alt="`product ${productDetailData.uid}`" loading="lazy" />
+          <img
+            :src="'/temp/products/' + productDetailData.images"
+            :alt="`product ${productDetailData.uid}`"
+            loading="lazy"
+          />
         </div>
       </div>
       <div class="product-details__container">
@@ -18,8 +26,8 @@
           {{ productDetailData.name }}
         </h4>
         <p class="product-details__price">
-          <span class="_price-before">￦{{ productDetailData.beforePrice | toCurrency }}</span>
-          <span class="_price-current">￦{{ productDetailData.crrPrice | toCurrency }}</span>
+          <span class="_price-before">￦{{ toCurrency(productDetailData.beforePrice) }}</span>
+          <span class="_price-current">￦{{ toCurrency(productDetailData.crrPrice) }}</span>
         </p>
         <p class="product-details__info-summary" :html="productDetailData.summary"></p>
         <div class="product-details__purchase-amount-select">
@@ -52,39 +60,54 @@
   </div>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex';
-export default {
+<script lang="ts">
+import { defineComponent, onMounted, getCurrentInstance, useRoute } from '@nuxtjs/composition-api';
+import { useNamespacedGetters, useNamespacedActions } from 'vuex-composition-helpers';
+
+import { toCurrency } from '~/utils/functions';
+
+export default defineComponent({
   name: 'product-details-index',
-  computed: {
-    ...mapGetters({
-      productDetailData: 'products/productDetailData'
-    })
-  },
-  methods: {
-    ...mapActions({
-      GET_PRODUCT_DETAIL: 'products/GET_PRODUCT_DETAIL',
-      ADD_TODAYS_VIEW_LIST: 'todaysview/ADD_TODAYS_VIEW_LIST',
-      ADD_TODAYS_VIEW_LIST_STORAGE: 'todaysview/ADD_TODAYS_VIEW_LIST_STORAGE'
-    })
-  },
-  mounted() {
-    this.GET_PRODUCT_DETAIL({
-      uid: this.$route.params.uid
-    })
-      .then(() => {
-        console.log('# ADD_TODAYS_VIEW_LIST #');
+  setup() {
+    const vm = getCurrentInstance();
+
+    const { params } = useRoute().value;
+
+    const { productDetailData } = useNamespacedGetters('products', ['productDetailData']);
+
+    const { GET_PRODUCT_DETAIL } = useNamespacedActions('products', ['GET_PRODUCT_DETAIL']);
+
+    const {
+      ADD_TODAYS_VIEW_LIST,
+      ADD_TODAYS_VIEW_LIST_STORAGE,
+    } = useNamespacedActions('todaysview', [
+      'ADD_TODAYS_VIEW_LIST',
+      'ADD_TODAYS_VIEW_LIST_STORAGE',
+    ]);
+
+    onMounted(() => {
+      GET_PRODUCT_DETAIL({
+        uid: params.uid,
       })
-      .catch(() => {})
-      .finally(() => {
-        this.ADD_TODAYS_VIEW_LIST(this.productDetailData);
-        this.ADD_TODAYS_VIEW_LIST_STORAGE({
-          vm: this,
-          uid: this.productDetailData.uid
+        .then(() => {
+          console.log('# ADD_TODAYS_VIEW_LIST #');
+        })
+        .catch(() => {})
+        .finally(() => {
+          ADD_TODAYS_VIEW_LIST(productDetailData.value);
+          ADD_TODAYS_VIEW_LIST_STORAGE({
+            vm: vm,
+            uid: productDetailData.value.uid,
+          });
         });
-      });
-  }
-};
+    });
+
+    return {
+      toCurrency,
+      productDetailData,
+    };
+  },
+});
 </script>
 
 <style lang="scss">

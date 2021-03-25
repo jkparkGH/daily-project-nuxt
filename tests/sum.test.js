@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import titleComponent from '../src/components/common/content-title';
+import titleComponent from '../src/components/common/content-title.vue';
 
 describe('# 컴포넌트 테스트 : ', () => {
   let wrapper;
