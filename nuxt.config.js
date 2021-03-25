@@ -78,6 +78,7 @@ module.exports = {
         Promise: 'es6-promise',
       }),
     ],
+    transpile: ['vuex-composition-helpers'],
   },
 
   polyfill: {

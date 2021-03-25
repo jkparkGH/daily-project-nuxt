@@ -5,8 +5,8 @@
     "node": true
   },
   "parser": "vue-eslint-parser",
-  "extends": ["plugin:vue/vue3-essential", "prettier"],
-  "plugins": ["vue"],
+  "extends": ["plugin:vue/essential", "prettier"],
+  "plugins": ["@vue/eslint-plugin"],
   "rules": {
     "no-undef": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0
