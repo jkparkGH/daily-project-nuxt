@@ -2,7 +2,7 @@
   <section>
     <!-- New Arrivals -->
     <div class="common-item-box">
-      <ul class="product-list" v-lazy-container="{ selector: 'img' }">
+      <ul v-lazy-container="{ selector: 'img' }" class="product-list">
         <li
           v-for="(item, $index) in filteredProductList"
           :key="'products' + $index"
@@ -10,13 +10,13 @@
           :data-product-uid="item.uid"
         >
           <div class="product-list__label-container">
-            <span class="label-new" v-if="item.new">New</span>
-            <span class="label-sale" v-if="item.sale">Sale</span>
+            <span v-if="item.new" class="label-new">New</span>
+            <span v-if="item.sale" class="label-sale">Sale</span>
           </div>
           <div class="product-list__image-container">
             <img
               class="product-image"
-              :data-src="'/temp/products/' + item.images"
+              :data-src="'/temp/products/' + item.imageURL"
               alt="product image"
               loading="lazy"
             />
@@ -24,18 +24,25 @@
               <span class="product-dim__view-detail">View detail</span>
             </router-link>
           </div>
-          <p class="product-list__category">{{ item.gender }}</p>
+
+          <p class="product-list__category">
+            {{ item.gender }}
+          </p>
+
           <p class="product-list__item-name">
             {{ item.name }}
           </p>
+
           <p class="product-list__price-before">
             ￦
-            <span>{{ toCurrency(item.beforePrice) }}</span>
+            <span>{{ toCurrency(item.before_price) }}</span>
           </p>
+
           <p class="product-list__price-current">
             ￦
-            <span>{{ toCurrency(item.crrPrice) }}</span>
+            <span>{{ toCurrency(item.crr_price) }}</span>
           </p>
+
           <div class="product-list__button-container">
             <button type="button" class="btn-product add-cart">
               Add
@@ -61,32 +68,33 @@ import { useNamespacedGetters, useNamespacedActions } from 'vuex-composition-hel
 import { toCurrency } from '~/utils/functions';
 
 export default defineComponent({
-  name: 'product-list',
-
+  name: 'ProductList',
   setup() {
-    const { products, searchInfo } = useNamespacedGetters('products', ['products', 'searchInfo']);
+    const { getProducts } = useNamespacedGetters('products', ['getProducts']);
+
+    const { getSearchFilter } = useNamespacedGetters('searchFilter', ['getSearchFilter']);
 
     const { GET_PRODUCTS } = useNamespacedActions('products', ['GET_PRODUCTS']);
 
     const filteredProductList = computed(() => {
-      const { ascending, searchText } = searchInfo.value;
+      const { ascending, searchText } = getSearchFilter.value;
 
-      let result = [...products.value];
+      let result = [...getProducts.value];
 
       if (searchText) {
         result = result.filter((el) => {
-          return el.name.toLowerCase().indexOf(searchText) > -1;
+          return el.name.toLowerCase().includes(searchText);
         });
       }
 
       if (typeof ascending.cost === 'boolean') {
         result = result.slice().sort((a, b) => {
-          return ascending.cost ? a.crrPrice - b.crrPrice : b.crrPrice - a.crrPrice;
+          return ascending.cost ? a.crr_price - b.crr_price : b.crr_price - a.crr_price;
         });
       }
 
       if (typeof ascending.name === 'boolean') {
-        result = result.slice().sort((a, b) => {
+        result = result.slice().sort(() => {
           return ascending.name ? -1 : 1;
         });
       }
@@ -95,9 +103,7 @@ export default defineComponent({
     });
 
     function fetchData() {
-      GET_PRODUCTS().then(() => {
-        console.log(products);
-      });
+      GET_PRODUCTS();
     }
 
     onMounted(() => {

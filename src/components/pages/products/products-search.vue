@@ -11,7 +11,7 @@
           type="button"
           title="sort button"
           :aria-label="`sort ${ascending.cost ? 'ascending' : 'descending'} button`"
-          @click="ascendingTypeReverse('cost')"
+          @click="onAscendingTypeReverse('cost')"
         >
           {{ ascending.cost ? '▲' : '▼' }}
         </button>
@@ -22,7 +22,7 @@
           type="button"
           title="sort button"
           :aria-label="`sort ${ascending.name ? 'ascending' : 'descending'} button`"
-          @click="ascendingTypeReverse('name')"
+          @click="onAscendingTypeReverse('name')"
         >
           {{ ascending.name ? '▲' : '▼' }}
         </button>
@@ -32,30 +32,47 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { computed, defineComponent, watch } from '@nuxtjs/composition-api';
 import { useNamespacedGetters, useNamespacedActions } from 'vuex-composition-helpers';
 
 export default defineComponent({
-  name: 'product-search',
+  name: 'ProductSearch',
   setup() {
-    const { searchInfo } = useNamespacedGetters('products', ['searchInfo']);
-    const { ascending, searchText } = searchInfo.value;
-    const { SET_SEARCH_INFO_TEXT, SET_SEARCH_INFO_ASCENDING } = useNamespacedActions('products', [
-      'SET_SEARCH_INFO_TEXT',
-      'SET_SEARCH_INFO_ASCENDING',
-    ]);
+    const { getSearchFilter } = useNamespacedGetters('searchFilter', ['getSearchFilter']);
+
+    const { searchText, ascending } = getSearchFilter.value;
+
+    const { SET_SEARCH_INFO_TEXT, SET_SEARCH_INFO_ASCENDING } = useNamespacedActions(
+      'searchFilter',
+      ['SET_SEARCH_INFO_TEXT', 'SET_SEARCH_INFO_ASCENDING']
+    );
 
     const computedSearchText = computed({
-      get: function() {
+      get: () => {
         return searchText;
       },
-      set: function(value) {
+      set: (value) => {
         SET_SEARCH_INFO_TEXT(value);
       },
     });
 
-    function ascendingTypeReverse(typeString: string | null) {
-      if (!typeString) return;
+    // TODO: data binding fix
+    watch(
+      getSearchFilter,
+      (newValue: any) => {
+        ascending.cost = newValue.ascending.cost;
+        ascending.name = newValue.ascending.name;
+      },
+      {
+        immediate: true,
+        deep: true,
+      }
+    );
+
+    function onAscendingTypeReverse(typeString: string | null) {
+      if (!typeString) {
+        return;
+      }
 
       SET_SEARCH_INFO_ASCENDING({
         [typeString]: !ascending[typeString],
@@ -65,7 +82,7 @@ export default defineComponent({
     return {
       computedSearchText,
       ascending,
-      ascendingTypeReverse,
+      onAscendingTypeReverse,
     };
   },
 });

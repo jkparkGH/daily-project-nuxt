@@ -96,7 +96,7 @@ export default defineComponent({
         .finally(() => {
           ADD_TODAYS_VIEW_LIST(productDetailData.value);
           ADD_TODAYS_VIEW_LIST_STORAGE({
-            vm: vm,
+            vm,
             uid: productDetailData.value.uid,
           });
         });
