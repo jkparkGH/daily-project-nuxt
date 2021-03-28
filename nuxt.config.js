@@ -30,7 +30,17 @@ module.exports = {
     },
   },
 
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/eslint-module', '@nuxtjs/composition-api'],
+  buildModules: [
+    [
+      '@nuxt/typescript-build',
+      {
+        configFile: path.resolve('./tsconfig.json'),
+        typescript: require.resolve('typescript'),
+      },
+    ],
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/composition-api',
+  ],
 
   modules: [
     '@nuxtjs/style-resources',
@@ -72,12 +82,6 @@ module.exports = {
     extend(config) {
       config.devtool = 'hidden-source-map';
     },
-    plugins: [
-      new webpack.ProvidePlugin({
-        _: 'lodash',
-        Promise: 'es6-promise',
-      }),
-    ],
     transpile: ['vuex-composition-helpers'],
   },
 
