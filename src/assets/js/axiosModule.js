@@ -1,59 +1,57 @@
-import axios from "axios";
+import axios from 'axios';
 
-const baseUrl =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:8080"
-    : process.env.baseUrl;
+const API_HOST_URL =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : process.env.API_HOST_URL;
 
 const axiosInstance = axios.create({
-  baseURL: baseUrl,
+  API_HOST_URL: API_HOST_URL,
   timeout: 50000,
-  headers: { "Content-Type": "application/json" }
+  headers: { 'Content-Type': 'application/json' },
 });
 
 class AxiosModule {
   constructor() {
     axiosInstance.interceptors.response.use(
-      response => {
+      (response) => {
         return response;
       },
-      error => {
+      (error) => {
         return Promise.reject(error);
       }
     );
   }
 
   responseHandle(response, responseHandler) {
-    if (typeof responseHandler === "function") {
+    if (typeof responseHandler === 'function') {
       responseHandler(response);
     }
   }
 
   errorHandle(response, errorHandler) {
-    if (typeof errorHandler === "function") {
+    if (typeof errorHandler === 'function') {
       errorHandler(response);
     }
   }
 
   callbackHandle(callbackHandler) {
-    if (typeof callbackHandler === "function") {
+    if (typeof callbackHandler === 'function') {
       callbackHandler();
     }
   }
 
   get({
-    url = "",
+    url = '',
     reqData = {},
     responseHandler = () => {},
     errorHandler = () => {},
-    callback = () => {}
+    callback = () => {},
   }) {
     axiosInstance
       .get(url, { reqData })
-      .then(response => {
+      .then((response) => {
         this.responseHandle(response, responseHandler);
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorHandle(error, errorHandler);
       })
       .finally(() => {
@@ -62,18 +60,18 @@ class AxiosModule {
   }
 
   post({
-    url = "",
+    url = '',
     reqData = {},
     responseHandler = () => {},
     errorHandler = () => {},
-    callback = () => {}
+    callback = () => {},
   }) {
     axiosInstance
       .post(url, reqData)
-      .then(response => {
+      .then((response) => {
         this.responseHandle(response, responseHandler);
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorHandle(error, errorHandler);
       })
       .finally(() => {
