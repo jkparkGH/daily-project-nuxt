@@ -8,8 +8,11 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "jsx": "preserve",
     "noEmit": true,
+    "importHelpers": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
