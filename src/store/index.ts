@@ -22,3 +22,4 @@ export default () => {
 
 export const productStore = getModule(productModule, store);
 export const searchFilterStore = getModule(searchFilterModule, store);
+export const todaysviewStore = getModule(todaysview, store);

@@ -1,52 +1,86 @@
 <template>
-  <div class="todays-view" v-show="todaysViewList.length > 0">
+  <div class="todays-view" v-show="todaysView.list.length > 0">
     <span>today-views</span>
     <ul>
-      <li v-for="(item, $index) in pagenationFilter(todaysViewList)" :key="'todays-view-list' + $index">
+      <li
+        v-for="(item, $index) in pagenationFilter(todaysView.list)"
+        :key="'todays-view-list' + $index"
+      >
         <router-link :to="'/products/' + item.uid">
-          <img :src="'/temp/products/' + item.images" loading="lazy" />
+          <img :src="'/temp/products/' + item.imageURL" loading="lazy" />
         </router-link>
       </li>
     </ul>
-    <div v-show="todaysViewList.length > 4" class="todays-view__pagination">
+    <div v-show="todaysView.list.length > 4" class="todays-view__pagination">
       <button type="button" @click="movePrev">◀</button>
-      <span>{{ crrIndex + 1 }}</span
-      >&#47;<span>{{ totalPageCount }}</span>
+      <span>{{ crrIndex + 1 }}</span>
+      &#47;
+      <span>{{ totalPageCount }}</span>
       <button type="button" @click="moveNext">▶</button>
     </div>
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
-export default {
-  name: 'todays-view',
-  data() {
+<script lang="ts">
+import { defineComponent, computed, ref, watch } from '@nuxtjs/composition-api';
+import { useNamespacedGetters } from 'vuex-composition-helpers';
+
+interface todaysViewData {
+  uid: number;
+  imageURL: string;
+}
+
+export default defineComponent({
+  name: 'TodaysView',
+  setup() {
+    const { getTodaysView } = useNamespacedGetters('todaysview', ['getTodaysView']);
+
+    // TODO: Array type으로 변경
+    const todaysView: { list: todaysViewData[] } = {
+      list: [],
+    };
+
+    const crrIndex = ref(0);
+
+    const countPerPage = ref(4);
+
+    const totalPageCount = computed(() => {
+      return Math.ceil(todaysView.list.length / countPerPage.value);
+    });
+
+    watch(
+      getTodaysView,
+      (newValue: any) => {
+        todaysView.list = newValue.list;
+      },
+      { immediate: true, deep: true }
+    );
+
+    function movePrev() {
+      crrIndex.value > 0 && crrIndex.value--;
+    }
+
+    function moveNext() {
+      crrIndex.value + 1 < totalPageCount.value && crrIndex.value++;
+    }
+
+    function pagenationFilter(todaysViewList: todaysViewData[]) {
+      return todaysViewList.slice(
+        crrIndex.value * countPerPage.value,
+        (crrIndex.value + 1) * countPerPage.value
+      );
+    }
+
     return {
-      crrIndex: 0,
-      countPerPage: 4
+      crrIndex,
+      totalPageCount,
+      todaysView,
+      movePrev,
+      moveNext,
+      pagenationFilter,
     };
   },
-  computed: {
-    ...mapGetters({
-      todaysViewList: 'todaysview/todaysViewList'
-    }),
-    totalPageCount() {
-      return Math.ceil(this.todaysViewList.length / this.countPerPage);
-    }
-  },
-  methods: {
-    movePrev() {
-      this.crrIndex > 0 && this.crrIndex--;
-    },
-    moveNext() {
-      this.crrIndex + 1 < this.totalPageCount && this.crrIndex++;
-    },
-    pagenationFilter(todaysViewList) {
-      return todaysViewList.slice(this.crrIndex * this.countPerPage, (this.crrIndex + 1) * this.countPerPage);
-    }
-  }
-};
+});
 </script>
 
 <style lang="scss" scoped>
