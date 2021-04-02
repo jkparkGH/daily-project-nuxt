@@ -12,8 +12,8 @@ class ProductService extends AxiosClient {
     return response.data;
   }
 
-  async readOne(uid: IProduct['uid']) {
-    const response = await this.http.get<IProduct>(`/${uid}`);
+  async readOne(params: { uid: IProduct['uid'] }) {
+    const response = await this.http.get<IProduct>(`/${params.uid}`);
 
     return response.data;
   }

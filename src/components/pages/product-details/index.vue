@@ -1,7 +1,7 @@
 <template>
   <div class="common-layout">
     <h3 class="_blind">Product Detail</h3>
-    <p class="category-tag">
+    <p class="category-tag" v-if="productDetailData">
       <router-link class="back-to-list" to="/products">
         ◀
         <span>Back to List</span>
@@ -11,11 +11,11 @@
         <strong>{{ productDetailData.name }}</strong>
       </span>
     </p>
-    <div class="product-details">
+    <div class="product-details" v-if="productDetailData">
       <div class="product-details__container">
         <div class="product-details__image">
           <img
-            :src="'/temp/products/' + productDetailData.images"
+            :src="'/temp/products/' + productDetailData.imageURL"
             :alt="`product ${productDetailData.uid}`"
             loading="lazy"
           />
@@ -26,8 +26,8 @@
           {{ productDetailData.name }}
         </h4>
         <p class="product-details__price">
-          <span class="_price-before">￦{{ toCurrency(productDetailData.beforePrice) }}</span>
-          <span class="_price-current">￦{{ toCurrency(productDetailData.crrPrice) }}</span>
+          <span class="_price-before">￦{{ toCurrency(productDetailData.before_price) }}</span>
+          <span class="_price-current">￦{{ toCurrency(productDetailData.crr_price) }}</span>
         </p>
         <p class="product-details__info-summary" :html="productDetailData.summary"></p>
         <div class="product-details__purchase-amount-select">
@@ -41,7 +41,7 @@
           <button class="btn-purchase" type="button">Purchase</button>
           <button class="btn-add-cart" type="button">Add Cart</button>
         </div>
-        <ul class="product-details__product-info-list">
+        <ul class="product-details__product-info-list" v-if="productDetailData.infoList">
           <li>
             <h4>Info</h4>
             <p v-html="productDetailData.infoList.info"></p>
@@ -61,45 +61,69 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, getCurrentInstance, useRoute } from '@nuxtjs/composition-api';
-import { useNamespacedGetters, useNamespacedActions } from 'vuex-composition-helpers';
+import { defineComponent, onMounted, useRoute, watch } from '@nuxtjs/composition-api';
+import {
+  useNamespacedGetters,
+  useNamespacedActions,
+  useNamespacedMutations,
+} from 'vuex-composition-helpers';
+import { IProduct } from '~/models';
 
 import { toCurrency } from '~/utils/functions';
 
 export default defineComponent({
-  name: 'product-details-index',
+  name: 'ProductDetailsIndex',
   setup() {
-    const vm = getCurrentInstance();
-
     const { params } = useRoute().value;
 
     const { productDetailData } = useNamespacedGetters('products', ['productDetailData']);
 
-    const { GET_PRODUCT_DETAIL } = useNamespacedActions('products', ['GET_PRODUCT_DETAIL']);
-
-    const {
-      ADD_TODAYS_VIEW_LIST,
-      ADD_TODAYS_VIEW_LIST_STORAGE,
-    } = useNamespacedActions('todaysview', [
-      'ADD_TODAYS_VIEW_LIST',
-      'ADD_TODAYS_VIEW_LIST_STORAGE',
+    const { GET_PRODUCT_DETAIL } = useNamespacedActions('products', [
+      'GET_PRODUCT_DETAIL',
+      'INIT_PRODUCT_DETAIL',
     ]);
 
-    onMounted(() => {
-      GET_PRODUCT_DETAIL({
-        uid: params.uid,
-      })
-        .then(() => {
-          console.log('# ADD_TODAYS_VIEW_LIST #');
-        })
-        .catch(() => {})
-        .finally(() => {
-          ADD_TODAYS_VIEW_LIST(productDetailData.value);
-          ADD_TODAYS_VIEW_LIST_STORAGE({
-            vm,
-            uid: productDetailData.value.uid,
-          });
+    // TODO: fix -> Action을 사용하고싶은데, commit만 호출하는 Action은 Error를 반환하는상태
+    // const {
+    //   ADD_TODAYS_VIEW_LIST,
+    //   ADD_TODAYS_VIEW_LIST_STORAGE,
+    // } = useNamespacedActions('todaysview', [
+    //   'ADD_TODAYS_VIEW_LIST',
+    //   'ADD_TODAYS_VIEW_LIST_STORAGE',
+    // ]);
+
+    const { setTodaysViewList, setTodaysViewListStorage } = useNamespacedMutations('todaysview', [
+      'setTodaysViewList',
+      'setTodaysViewListStorage',
+    ]);
+
+    function addTodaysView(productDetailData: IProduct) {
+      setTodaysViewList(productDetailData);
+      setTodaysViewListStorage();
+    }
+
+    function fetchData() {
+      try {
+        GET_PRODUCT_DETAIL({
+          uid: params.uid,
         });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    watch(
+      productDetailData,
+      (newValue) => {
+        if (newValue) {
+          addTodaysView(newValue);
+        }
+      },
+      { immediate: true, deep: true }
+    );
+
+    onMounted(() => {
+      fetchData();
     });
 
     return {

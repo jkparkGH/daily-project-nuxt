@@ -1,7 +1,7 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators';
-import mockData from '@/store/data/dummy.js';
 import { IProduct } from '@/models';
 import { productService } from '@/services';
+import mockData from '@/store/data/dummy.js';
 
 let getProductsProcessing = false;
 let getProductDetailsProcessing = false;
@@ -16,8 +16,12 @@ class ProductModule extends VuexModule {
   products: IProduct[] = [];
   productDetail: IProduct | null = null;
 
-  get getProducts(): IProduct[] {
+  get getProducts() {
     return this.products;
+  }
+
+  get productDetailData() {
+    return this.productDetail;
   }
 
   @Mutation
@@ -35,15 +39,15 @@ class ProductModule extends VuexModule {
   }
 
   @Mutation
-  addProductDetailMockData(uid: IProduct['uid']) {
-    // Mock Data
-    const result = mockData.readMany.products.find((el) => el.uid === uid);
+  addProductDetailMockData(params: { uid: IProduct['uid'] }) {
+    // Mock Data Binding
+    const result = mockData.readMany.products.find((el) => Number(el.uid) === Number(params.uid));
 
     if (!result) {
       return;
     }
 
-    this.productDetail = { ...result };
+    this.productDetail = { ...mockData.readOne, ...result };
 
     console.log('## addProductDetailMockData ##', this.productDetail);
   }
@@ -68,21 +72,26 @@ class ProductModule extends VuexModule {
   }
 
   @Action({})
-  async GET_PRODUCT_DETAIL(uid: IProduct['uid']) {
+  async GET_PRODUCT_DETAIL(params: { uid: IProduct['uid'] }) {
     try {
       if (!getProductDetailsProcessing) {
         getProductDetailsProcessing = true;
 
-        const response = await productService.readOne(uid);
+        const response = await productService.readOne({ uid: params.uid });
 
         return response;
       }
     } catch (error) {
-      alert(error.message ?? '통신중 오류가 발생하였습니다');
+      console.error(error.message ?? '통신중 오류가 발생하였습니다');
     } finally {
       getProductDetailsProcessing = false;
-      this.addProductDetailMockData(uid);
+      this.addProductDetailMockData({ uid: params.uid });
     }
+  }
+
+  @Action({ commit: 'setStateProductDetail' })
+  INIT_PRODUCT_DETAIL() {
+    return null;
   }
 }
 
