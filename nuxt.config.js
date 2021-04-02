@@ -61,7 +61,7 @@ module.exports = {
 
   generate: {
     async routes() {
-      return dummyData.dummyList.map((product) => {
+      return dummyData.readMany.products.map((product) => {
         return `/products/${product.uid}`;
       });
     },
