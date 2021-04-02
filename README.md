@@ -2,9 +2,8 @@
 
 https://daily-beauty-house.netlify.app/
 
-> 매일마다 조금씩 개발하는 Web App Project 입니다.
+> 마음에 감동이 오면 조금씩 개발하는 Web App Project 입니다.
 > 일반적인 기능들, 해보고 싶은 기능들 구현해보는 목적의 Project 입니다.
-> Vue, Vuex, Nuxt, Axios ++
 
 ## Dependencies
 
@@ -14,49 +13,12 @@ https://daily-beauty-house.netlify.app/
 
 3. `vue-lazyload`: https://www.npmjs.com/package/vue-lazyload
 
-## Jest TEST MEMO
+4. `test-utils api Document`: https://vue-test-utils.vuejs.org/api/
 
-1. Dependencies: `npm install --save-dev babel-jest jest jest-vue-preprocessor @vue/test-utils typescript`
+5. `뷰 유닛테스트 공식 document`: https://kr.vuejs.org/v2/guide/unit-testing.html
 
-2. package.json setting
+6. `Nuxt typescript`: https://typescript.nuxtjs.org/
 
-```json
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          "@babel/preset-env"
-        ]
-      }
-    }
-  },
-  "jest": {
-    "verbose": true,
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
-    },
-    "moduleNameMapper": {
-      "^vue$": "vue/dist/vue.common.js",
-      "^~/(.*)$": "<rootDir>/$1"
-    },
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/components/**/*.{js, vue}",
-      "**/server/utils/*.{js}",
-      "!**/node_modules/**"
-    ],
-    "coverageReporters": [
-      "text-summary"
-    ]
-  }
-```
+7. `vue composition api`: https://v3.vuejs.org/guide/composition-api-introduction.html
 
-3. `test-utils api Document`: https://vue-test-utils.vuejs.org/api/
-
-4. `뷰 유닛테스트 공식 document`: https://kr.vuejs.org/v2/guide/unit-testing.html
+8. `vuex-module-decorator`: https://www.npmjs.com/package//vuex-module-decorators
