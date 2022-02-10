@@ -36,7 +36,7 @@
     "eslint-config-prettier": "^8.1.0",
     "lodash": "^4.17.19",
     "lodash-es": "^4.17.21",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.14.5",
     "nuxt-compress": "^4.0.0",
     "nuxt-polyfill": "^1.0.3",
